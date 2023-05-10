@@ -13,12 +13,16 @@ class CompanyCreated implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
+    public mixed $params;
+    public int $tries = 3;
+
     /**
      * Create a new job instance.
      */
-    public function __construct(private string $email)
+    public function __construct(mixed $payload)
     {
-        //
+        $this->onConnection('sqs')->onQueue('company-queue');
+        $this->params = $payload;
     }
 
     /**
@@ -26,6 +30,6 @@ class CompanyCreated implements ShouldQueue
      */
     public function handle(): void
     {
-        //
+        print_r($this->params);
     }
 }

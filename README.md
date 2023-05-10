@@ -17,6 +17,17 @@ Além disto é bom ter um editor para trabalhar com o código como [VSCode](http
 
 ```bash
 # Clone este repositório
+$ git clone <https://github.com/localstack/localstack >
+cd localstack
+docker compose up -d
+
+Verificar na documentação como criar as queue local com aws
+https://docs.aws.amazon.com/cli/latest/reference/sqs/
+
+filas:
+company-queue
+
+# Clone este repositório
 $ git clone <https://github.com/tcommerce/layoutbase-api.git >
 
 # Acesse a pasta do projeto no terminal/cmd
@@ -37,6 +48,10 @@ $ cd layoutbase
     <li>DB_DATABASE=backoffice</li>
     <li>DB_USERNAME=admin</li>
     <li>DB_PASSWORD=admin</li>
+    <li>SQS_PREFIX=http://127.0.0.1:4566</li>
+    <li>SQS_QUEUE=default</li>
+    <li>QUEUE_CONNECTION=sqs</li>
+    
 </ul>
     <li>IMPORTANTE VERIFICAR SE PORT ESTÁ SENDO USADO EM ALGUM OUTRO SERVIÇO LOCAL</li>
 
