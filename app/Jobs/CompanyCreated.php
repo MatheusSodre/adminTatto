@@ -21,8 +21,9 @@ class CompanyCreated implements ShouldQueue
      */
     public function __construct(mixed $payload)
     {
-        $this->onConnection('sqs')->onQueue('company-queue');
-        $this->params = $payload;
+        $this->onConnection('sqs')
+            ->onQueue('company-queue')
+            ->params = $payload;
     }
 
     /**

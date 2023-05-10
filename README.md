@@ -10,23 +10,28 @@ Foi proposto para uma resolução genérica, caso seu projeto necessite de uma e
 ### Pré-requisitos
 
 Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas:
-[Git](https://git-scm.com), [Docker](https://www.docker.com/). 
+[Git](https://git-scm.com), [Docker](https://www.docker.com/) e [LocalStack](https://github.com/localstack/localstack/).
 Além disto é bom ter um editor para trabalhar com o código como [VSCode](https://code.visualstudio.com/)
 
-### 🎲 Rodando o Back End (servidor)
 
-```bash
+```
 # Clone este repositório
 $ git clone <https://github.com/localstack/localstack >
 cd localstack
 docker compose up -d
 
+Precisa existir aws cli instalado.
+https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html
+
 Verificar na documentação como criar as queue local com aws
 https://docs.aws.amazon.com/cli/latest/reference/sqs/
 
-filas:
+queues que precisam ser criadas no SQS:
 company-queue
+```
+### 🎲 Rodando o Back End (servidor)
 
+```bash
 # Clone este repositório
 $ git clone <https://github.com/tcommerce/layoutbase-api.git >
 
