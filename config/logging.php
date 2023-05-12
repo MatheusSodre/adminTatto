@@ -1,12 +1,12 @@
 <?php
 
+use App\Helpers\Logger\Processor;
 use Monolog\Handler\NullHandler;
 use Monolog\Handler\StreamHandler;
 use Monolog\Handler\SyslogUdpHandler;
 use Monolog\Processor\PsrLogMessageProcessor;
 
 return [
-
     /*
     |--------------------------------------------------------------------------
     | Default Log Channel
@@ -17,9 +17,7 @@ return [
     | one of the channels defined in the "channels" configuration array.
     |
     */
-
     'default' => env('LOG_CHANNEL', 'stack'),
-
     /*
     |--------------------------------------------------------------------------
     | Deprecations Log Channel
@@ -30,7 +28,6 @@ return [
     | your application ready for upcoming major versions of dependencies.
     |
     */
-
     'deprecations' => [
         'channel' => env('LOG_DEPRECATIONS_CHANNEL', 'null'),
         'trace' => false,
@@ -50,14 +47,34 @@ return [
     |                    "custom", "stack"
     |
     */
-
     'channels' => [
         'stack' => [
             'driver' => 'stack',
-            'channels' => ['single'],
+            'channels' => ['single', 'graylog'],
             'ignore_exceptions' => false,
         ],
-
+        'graylog' => [
+            'driver' => 'custom',
+            'via' => \Hedii\LaravelGelfLogger\GelfLoggerFactory::class,
+            'processors' => [
+                \Hedii\LaravelGelfLogger\Processors\NullStringProcessor::class,
+                Processor::class,
+            ],
+            'level' => 'debug',
+            'name' => 'micro-central-app',
+            'system_name' => null,
+            'transport' => 'udp',
+            'host' => '127.0.0.1',
+            'port' => 12201,
+            'path' => null,
+            'ssl' => false,
+            'ssl_options' => [
+                'verify_peer' => true,
+                'ca_file' => null,
+                'ciphers' => null,
+                'allow_self_signed' => false,
+            ],
+        ],
         'single' => [
             'driver' => 'single',
             'path' => storage_path('logs/laravel.log'),
@@ -89,7 +106,7 @@ return [
             'handler_with' => [
                 'host' => env('PAPERTRAIL_URL'),
                 'port' => env('PAPERTRAIL_PORT'),
-                'connectionString' => 'tls://'.env('PAPERTRAIL_URL').':'.env('PAPERTRAIL_PORT'),
+                'connectionString' => 'tls://' . env('PAPERTRAIL_URL') . ':' . env('PAPERTRAIL_PORT'),
             ],
             'processors' => [PsrLogMessageProcessor::class],
         ],
