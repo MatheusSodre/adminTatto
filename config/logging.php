@@ -64,8 +64,8 @@ return [
             'name' => 'micro-central-app',
             'system_name' => null,
             'transport' => 'udp',
-            'host' => '127.0.0.1',
-            'port' => 12201,
+            'host' => env('LOG_GRAYLOG_HOST'),
+            'port' => env('LOG_GRAYLOG_PORT'),
             'path' => null,
             'ssl' => false,
             'ssl_options' => [
