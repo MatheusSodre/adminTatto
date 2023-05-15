@@ -28,6 +28,11 @@ https://docs.aws.amazon.com/cli/latest/reference/sqs/
 
 queues que precisam ser criadas no SQS:
 company-queue
+
+# Estrutura de logs
+Na pasta docker/graylog existe um arquivo docker.compose que pode ser executado 
+para simular um ambiente de logs.
+Verificar informações no .env.example localizado em docker/graylog 
 ```
 ### 🎲 Rodando o Back End (servidor)
 
@@ -56,6 +61,9 @@ $ cd layoutbase
     <li>SQS_PREFIX=http://127.0.0.1:4566</li>
     <li>SQS_QUEUE=default</li>
     <li>QUEUE_CONNECTION=sqs</li>
+    <li>LOG_GRAYLOG_HOST=127.0.0.1</li>
+    <li>LOG_GRAYLOG_PORT=12201</li>
+    <li>LOG_CHANNEL=graylog</li>
     
 </ul>
     <li>IMPORTANTE VERIFICAR SE PORT ESTÁ SENDO USADO EM ALGUM OUTRO SERVIÇO LOCAL</li>
