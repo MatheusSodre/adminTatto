@@ -16,7 +16,8 @@ class EvaluationService
 
     public function getEvaluation(string $company)
     {   
-        return $this->request('get', "/api/evaluations/{$company}");
+        $response = $this->request('get', "/api/evaluations/{$company}");
+        return $response->body();
     }
 }
 ?>

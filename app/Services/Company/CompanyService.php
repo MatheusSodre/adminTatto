@@ -2,13 +2,10 @@
 
 namespace App\Services\Company;
 
-use App\Http\Resources\Company\CompanyResource;
+
 use App\Jobs\CompanyCreated;
 use App\Repositories\Company\CompanyRepository;
-use App\Services\ServicesExternal\Evaluation\EvaluationService;
-use Illuminate\Support\Facades\Response;
-use Illuminate\Http\Response as HttpResponse;
-use Illuminate\Http\JsonResponse;
+
 
 class CompanyService
 {
@@ -20,7 +17,7 @@ class CompanyService
      * @param  CompanyRepository  $companyRepository
      * @return void
      */
-    public function __construct(private CompanyRepository $companyRepository,private EvaluationService $evaluationService)
+    public function __construct(private CompanyRepository $companyRepository)
     {
         //
     }
@@ -45,12 +42,7 @@ class CompanyService
     
     public function getCompanyByUUID(string $field, string $uuid = null)
     {
-        $reponse             = $this->evaluationService->getEvaluation($uuid);
-        $data['company']     = (CompanyResource::collection($this->companyRepository->getCompanyByUUID($field,$uuid)));
-                                                                                    
-        
-        $data['evaluations'] = json_decode($reponse->body());
-        return $data;
+        return $this->companyRepository->getCompanyByUUID($field,$uuid);
     }
 
     public function updateCompanyByUUID($field,$request,$uuid):bool|null

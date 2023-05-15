@@ -7,6 +7,7 @@ use App\Http\Requests\Company\StoreUpdateCompany;
 use App\Http\Resources\Company\CompanyResource;
 use App\Services\Company\CompanyService;
 
+use App\Services\ServicesExternal\Evaluation\EvaluationService;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Http\Response as HttpResponse;
 use Illuminate\Http\Request;
@@ -18,7 +19,7 @@ class CompanyController extends Controller
      * @param CompanyService $companyService
      *
      */
-    public function __construct(private CompanyService $companyService)
+    public function __construct(private CompanyService $companyService,private EvaluationService $evaluationService)
     {
         $this->companyService = $companyService;
     }
@@ -41,10 +42,14 @@ class CompanyController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $uuid):JsonResponse
+    public function show(string $uuid)
     {
-        return Response::json($this->companyService->getCompanyByUUID('uuid',$uuid),HttpResponse::HTTP_OK);
-        // return Response::json(new CompanyResource($this->companyService->getCompanyByUUID('uuid',$uuid)),HttpResponse::HTTP_OK);
+        $company    = $this->companyService->getCompanyByUUID('uuid',$uuid);
+        $evaluation = $this->evaluationService->getEvaluation($uuid);
+        return (new CompanyResource($company))
+                            ->additional([
+                                'evaluations' => json_decode($evaluation)
+                            ]);
     }
 
     /**
