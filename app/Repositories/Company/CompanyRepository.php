@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Repositories\Company;
-use App\Interfaces\Company\CompanyRepositoryInterface;
+use App\Repositories\Interfaces\Company\CompanyRepositoryInterface;
 use App\Models\Company\Company;
 use App\Repositories\BaseRepository;
 

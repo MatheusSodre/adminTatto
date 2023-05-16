@@ -1,6 +1,6 @@
 <?php
-namespace App\Interfaces\Company;
-use App\Interfaces\BaseRepositoryInterface;
+namespace App\Repositories\Interfaces\Company;
+use App\Repositories\Interfaces\BaseRepositoryInterface;
 
  interface CompanyRepositoryInterface extends BaseRepositoryInterface
  {
