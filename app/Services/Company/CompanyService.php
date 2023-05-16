@@ -3,7 +3,8 @@
 namespace App\Services\Company;
 
 
-use App\Jobs\CompanyCreated;
+
+use App\Jobs\CompanyCreate;
 use App\Repositories\Company\CompanyRepository;
 
 
@@ -23,13 +24,13 @@ class CompanyService
     }
 
     public function store(array $data)
-    {  
+    {
             $company = $this->companyRepository->create($data);
-            CompanyCreated::dispatch($company->email)->onQueue('queue_micro_email');
+            CompanyCreate::dispatch($company->email)->onQueue('queue_micro_email');
         return $company;
-         
+
     }
-    
+
     public function getAll($relations = [], $columns = ['*'])
     {
         return $this->companyRepository->all($relations, $columns);
@@ -39,7 +40,7 @@ class CompanyService
     {
         return $this->companyRepository->paginate($relations,$limit,$columns);
     }
-    
+
     public function getCompanyByUUID(string $field, string $uuid = null)
     {
         return $this->companyRepository->getCompanyByUUID($field,$uuid);

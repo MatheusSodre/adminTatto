@@ -10,9 +10,30 @@ Foi proposto para uma resolução genérica, caso seu projeto necessite de uma e
 ### Pré-requisitos
 
 Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas:
-[Git](https://git-scm.com), [Docker](https://www.docker.com/). 
+[Git](https://git-scm.com), [Docker](https://www.docker.com/) e [LocalStack](https://github.com/localstack/localstack/).
 Além disto é bom ter um editor para trabalhar com o código como [VSCode](https://code.visualstudio.com/)
 
+
+```
+# Clone este repositório
+$ git clone <https://github.com/localstack/localstack >
+cd localstack
+docker compose up -d
+
+Precisa existir aws cli instalado.
+https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html
+
+Verificar na documentação como criar as queue local com aws
+https://docs.aws.amazon.com/cli/latest/reference/sqs/
+
+queues que precisam ser criadas no SQS:
+company-queue
+
+# Estrutura de logs
+Na pasta docker/graylog existe um arquivo docker.compose que pode ser executado 
+para simular um ambiente de logs.
+Verificar informações no .env.example localizado em docker/graylog 
+```
 ### 🎲 Rodando o Back End (servidor)
 
 ```bash
@@ -37,6 +58,13 @@ $ cd layoutbase
     <li>DB_DATABASE=backoffice</li>
     <li>DB_USERNAME=admin</li>
     <li>DB_PASSWORD=admin</li>
+    <li>SQS_PREFIX=http://127.0.0.1:4566</li>
+    <li>SQS_QUEUE=default</li>
+    <li>QUEUE_CONNECTION=sqs</li>
+    <li>LOG_GRAYLOG_HOST=127.0.0.1</li>
+    <li>LOG_GRAYLOG_PORT=12201</li>
+    <li>LOG_CHANNEL=graylog</li>
+    
 </ul>
     <li>IMPORTANTE VERIFICAR SE PORT ESTÁ SENDO USADO EM ALGUM OUTRO SERVIÇO LOCAL</li>
 
