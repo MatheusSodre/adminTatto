@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Repositories\Company;
-use App\Interfaces\Company\CompanyRepositoryInterface;
+use App\Repositories\Interfaces\Company\CompanyRepositoryInterface;
 use App\Models\Company\Company;
 use App\Repositories\BaseRepository;
 
@@ -14,7 +14,7 @@ class CompanyRepository  extends BaseRepository implements CompanyRepositoryInte
 
     public function getCompanyByUUID(string $field,string $uuid = null)
     {
-        return $this->model->where($field, $uuid)->get();
+        return $this->model->where($field, $uuid)->firstOrFail();
     }
     public function updateCompanyByUUID(string $field,string $uuid = null,array $data)
     {
