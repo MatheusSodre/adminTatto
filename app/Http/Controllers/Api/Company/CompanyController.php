@@ -57,14 +57,14 @@ class CompanyController extends Controller
      */
     public function update(StoreUpdateCompany $request, string $uuid)
     {
-        return $this->companyService->UpdateCompanyByUUID('uuid',$request->validated(),$uuid);
+        return response()->json($this->companyService->UpdateCompanyByUUID('uuid',$request->validated(),$uuid));
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $uuid):JsonResponse
-    {
-        return Response::json($this->companyService->destroyByUUID('uuid',$uuid),HttpResponse::HTTP_NO_CONTENT);
+    public function destroy(string $uuid)
+    {   
+        return response()->json($this->companyService->destroyByUUID('uuid',$uuid));
     }
 }

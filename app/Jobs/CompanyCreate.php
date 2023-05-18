@@ -24,8 +24,9 @@ class CompanyCreate implements ShouldQueue
     /**
      * Create a new job instance.
      */
-    public function __construct(array $payload, string $correlationId = null)
+    public function __construct(array $payload = null, string $correlationId = null)
     {
+        
         $this->onConnection('sqs')
             ->onQueue('company-create-queue')
             ->setCorrelationId($correlationId ?? strval(Str::uuid()))
@@ -37,6 +38,7 @@ class CompanyCreate implements ShouldQueue
      */
     public function handle(): void
     {
+        
         Log::withContext([
             'correlation-id' => $this->getCorrelationId(),
             'class' => __CLASS__,
@@ -60,6 +62,7 @@ class CompanyCreate implements ShouldQueue
         sleep(1);
         Log::info('Finished create  company process ', ['resume' => $this->params]);
         sleep(1);
+
         print_r($this->params);
 
     }

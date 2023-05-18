@@ -5,6 +5,7 @@ namespace App\Services\Company;
 
 
 use App\Jobs\CompanyCreate;
+use App\Jobs\CompanyCreatedEmail;
 use App\Repositories\Company\CompanyRepository;
 
 
@@ -26,7 +27,7 @@ class CompanyService
     public function store(array $data)
     {
             $company = $this->companyRepository->create($data);
-            CompanyCreate::dispatch($company->email)->onQueue('queue_micro_email');
+            CompanyCreatedEmail::dispatch($company->email)->onQueue('queue-micro-email');
         return $company;
 
     }
@@ -46,13 +47,22 @@ class CompanyService
         return $this->companyRepository->getCompanyByUUID($field,$uuid);
     }
 
-    public function updateCompanyByUUID($field,$request,$uuid):bool|null
+    public function updateCompanyByUUID($field,$request,$uuid)
     {
-        return $this->companyRepository->updateCompanyByUUID($field,$uuid,$request);
+        $reponse = $this->companyRepository->updateCompanyByUUID($field,$uuid,$request);
+        return $this->responseStatus($reponse);
     }
 
-    public function destroyByUUID($filed,$id):bool|null
-    {
+    public function destroyByUUID($filed,$id)
+    {   
         return $this->companyRepository->destroyByUUID($filed,$id);
+    }
+
+    public function responseStatus(bool $value)
+    {
+        if ($value) {
+            return response()->json(['menssege' => 'Success']);
+         }
+        return response()->json(['menssege' => 'denied']);
     }
 }
