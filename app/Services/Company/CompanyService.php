@@ -49,20 +49,11 @@ class CompanyService
 
     public function updateCompanyByUUID($field,$request,$uuid)
     {
-        $reponse = $this->companyRepository->updateCompanyByUUID($field,$uuid,$request);
-        return $this->responseStatus($reponse);
+        return $this->companyRepository->updateCompanyByUUID($field,$uuid,$request);
     }
 
     public function destroyByUUID($filed,$id)
     {   
         return $this->companyRepository->destroyByUUID($filed,$id);
-    }
-
-    public function responseStatus(bool $value)
-    {
-        if ($value) {
-            return response()->json(['menssege' => 'Success']);
-         }
-        return response()->json(['menssege' => 'denied']);
     }
 }
