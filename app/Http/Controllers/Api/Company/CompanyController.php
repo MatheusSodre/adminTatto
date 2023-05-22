@@ -5,8 +5,7 @@ namespace App\Http\Controllers\Api\Company;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Company\StoreUpdateCompany;
 use App\Http\Resources\Company\CompanyResource;
-use App\Services\Company\CompanyService;
-
+use App\Services\Company\CompanyService; 
 use App\Services\ServicesExternal\Evaluation\EvaluationService;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Http\Response as HttpResponse;
@@ -34,9 +33,9 @@ class CompanyController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreUpdateCompany $request):JsonResponse
+    public function store(StoreUpdateCompany $request)
     {
-        return Response::json(new CompanyResource($this->companyService->store($request->validated())),HttpResponse::HTTP_CREATED);
+        return new CompanyResource($this->companyService->store($request->validated()));
     }
 
     /**
@@ -52,19 +51,19 @@ class CompanyController extends Controller
                             ]);
     }
 
-    /**
+    /** 
      * Update the specified resource in storage.
      */
     public function update(StoreUpdateCompany $request, string $uuid)
     {
-        return $this->companyService->UpdateCompanyByUUID('uuid',$request->validated(),$uuid);
+        return Response::json($this->companyService->UpdateCompanyByUUID('uuid',$request->validated(),$uuid),HttpResponse::HTTP_ACCEPTED);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $uuid):JsonResponse
-    {
-        return Response::json($this->companyService->destroyByUUID('uuid',$uuid),HttpResponse::HTTP_NO_CONTENT);
+    public function destroy(string $uuid)
+    {   
+        return Response::json($this->companyService->destroyByUUID('uuid',$uuid), HttpResponse::HTTP_NO_CONTENT); 
     }
 }

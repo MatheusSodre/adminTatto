@@ -22,7 +22,7 @@ class StoreUpdateCompany extends FormRequest
     public function rules(): array
     {
         $uuid = $this->company;
-        
+
         return [
             'category_id' => "required|exists:categories,id",
             'name'        => "required|min:3|max:255|unique:companies,name,{$uuid},uuid",

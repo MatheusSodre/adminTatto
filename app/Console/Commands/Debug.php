@@ -27,6 +27,7 @@ class Debug extends Command
      */
     public function handle(): void
     {
+        $this->info('chamando');
         for ($i = 0; $i < 10; $i++) {
             CompanyCreate::dispatch([
                 "id" => $i,
