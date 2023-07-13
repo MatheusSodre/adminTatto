@@ -50,30 +50,25 @@ return [
     'channels' => [
         'stack' => [
             'driver' => 'stack',
-            'channels' => ['single', 'graylog'],
+            'channels' => ['single', 'gelf'],
             'ignore_exceptions' => false,
         ],
-        'graylog' => [
+        'gelf' => [
             'driver' => 'custom',
             'via' => \Hedii\LaravelGelfLogger\GelfLoggerFactory::class,
             'processors' => [
                 \Hedii\LaravelGelfLogger\Processors\NullStringProcessor::class,
-                Processor::class,
             ],
             'level' => 'debug',
-            'name' => 'micro-central-app',
+            'name' => 'gelf',
             'system_name' => null,
-            'transport' => 'udp',
+            'transport' => 'tcp',
             'host' => env('LOG_GRAYLOG_HOST'),
             'port' => env('LOG_GRAYLOG_PORT'),
             'path' => null,
-            'ssl' => false,
-            'ssl_options' => [
-                'verify_peer' => true,
-                'ca_file' => null,
-                'ciphers' => null,
-                'allow_self_signed' => false,
-            ],
+            'max_length' => null,
+            'context_prefix' => null,
+            'extra_prefix' => null,
         ],
         'single' => [
             'driver' => 'single',

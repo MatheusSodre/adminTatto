@@ -7,6 +7,7 @@ use App\Http\Requests\Company\StoreUpdateCompany;
 use App\Http\Resources\Company\CompanyResource;
 use App\Services\Company\CompanyService; 
 use App\Services\ServicesExternal\Evaluation\EvaluationService;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Http\Response as HttpResponse;
 use Illuminate\Http\Request;
@@ -25,8 +26,11 @@ class CompanyController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index()                                        
     {
+        Log::info('Initialize order validator process', ['parameters' => 'asdasd']);
+        
+        // Log::debug('Call header from request to get Idempotency');
         return CompanyResource::collection($this->companyService->getPaginate());
     }
 
