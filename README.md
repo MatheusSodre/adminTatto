@@ -3,6 +3,7 @@
 ## Descrição do Projeto
 <p dir="auto">Esse template foi construido baseado em boas práticas e conceitos que trazem eficiência na hora de codificar e na sua manutenção. Nosso objetivo foi deixar fácil de se implementar o certo e dificil de se implementar o errado.
 
+
 Nosso propósito foi desenvolver um template que aceita fácil a Mudança onde caso ocorra, não necessite alteração em inumeras outras partes do sistema que não fazem parte do contexto da mudança. Robustez caso uma alteração seja feita não quebre outras partes do sistema inesperadamente. E por último Mobilidade o sistema porporciona fácil reutilização de suas features/camadas, como o software é sempre evolutivo esse ponto é crucial para a facilidade da sua progressão.
 
 Foi proposto para uma resolução genérica, caso seu projeto necessite de uma estrutura específica que o template não proporcione fique a vontade em adicionar</p>
