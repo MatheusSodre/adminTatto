@@ -13,20 +13,17 @@ services:
         working_dir: /var/www/
         volumes:
             - ./:/var/www
-        depends_on:
-            - redis
-            - queue
         networks:
             - microservices
         links:
-            - db_ink
+            - db-ink
 
     # nginx
     nginx:
         image: nginx:alpine
         restart: unless-stopped
         ports:
-            - 9000:80
+            - 8888:80
             - 443:443
         volumes:
             - ./:/var/www
@@ -35,8 +32,8 @@ services:
             - microservices
 
     # mysql micro 01
-    db_ink:
-        container_name: db_ink
+    db-ink:
+        container_name: db-ink
         image: mysql:8.0
         restart: unless-stopped
         environment:
@@ -47,7 +44,7 @@ services:
         volumes:
             - ./.docker/mysql/dbdata:/var/lib/mysql
         ports:
-            - 3310:3306
+            - 3311:3306
         command: mysqld --character-set-server=utf8mb4
                 --collation-server=utf8mb4_unicode_ci
                 --default-authentication-plugin=mysql_native_password --sql-mode=""
@@ -55,27 +52,27 @@ services:
             - microservices
 
     # queue micro 01
-    queue:
-        build:
-            args:
-                user: admin
-                uid: 1000
-            context: ./
-            dockerfile: Dockerfile
-        restart: unless-stopped
-        command: "php artisan queue:work"
-        volumes:
-            - ./:/var/www
-        depends_on:
-            - redis
-        networks:
-            - microservices
+    # queue:
+    #     build:
+    #         args:
+    #             user: admin
+    #             uid: 1000
+    #         context: ./
+    #         dockerfile: Dockerfile
+    #     restart: unless-stopped
+    #     command: "php artisan queue:work"
+    #     volumes:
+    #         - ./:/var/www
+    #     depends_on:
+    #         - redis
+    #     networks:
+    #         - microservices
 
-    #redis
-    redis:
-        image: redis:latest
-        networks:
-            - microservices
+    # #redis
+    # redis:
+    #     image: redis:latest
+    #     networks:
+    #         - microservices
 
 networks:
     microservices:
