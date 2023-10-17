@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name')->unique();
             $table->string('url')->unique();
             $table->double('price',10,2);
-            $table->string('description')->unique();
+            $table->text('description');
             $table->timestamps();
         });
     }
