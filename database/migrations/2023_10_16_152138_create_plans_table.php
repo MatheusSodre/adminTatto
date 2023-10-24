@@ -13,10 +13,11 @@ return new class extends Migration
     {
         Schema::create('plans', function (Blueprint $table) {
             $table->id();
+            $table->uuid('uuid');
             $table->string('name')->unique();
             $table->string('url')->unique();
             $table->double('price',10,2);
-            $table->text('description');
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }

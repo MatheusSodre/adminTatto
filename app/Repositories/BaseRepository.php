@@ -41,7 +41,7 @@ class BaseRepository implements BaseRepositoryInterface
      * @param  array  $columns
      * @return mixed
      */
-    public function paginate($relations = [], $limit = null, $columns = ['*']): mixed
+    public function paginate( $limit = 10,$relations = [], $columns = ['*']): mixed
     {
         return $this->model::with($relations)->select($columns)->latest()->paginate($limit);
     }
@@ -123,5 +123,18 @@ class BaseRepository implements BaseRepositoryInterface
         }
 
         return $result->get();
+    }
+
+    public function getByUUID(string $field,string $uuid = null)
+    {
+        return $this->model->where($field, $uuid)->firstOrFail();
+    }
+    public function updateByUUID(string $field,string $uuid = null,array $data)
+    {
+        return $this->getByUUID($field,$uuid)->update($data);
+    }
+    public function destroyByUUID(string $field,string $uuid) 
+    {
+        return $this->getByUUID($field,$uuid)->delete(); 
     }
 }

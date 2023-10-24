@@ -19,7 +19,7 @@ class PlanSeeder extends Seeder
             $name  = "Nome Teste ".$i;
             
             DB::table('plans')->insert([
-                // 'uuid'          => Str::uuid(),
+                'uuid'          => Str::uuid(),
                 'name'          => $name,
                 'url'           => Str::slug($name,"-"),
                 'price'         => rand(10,100),

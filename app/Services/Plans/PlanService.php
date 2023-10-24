@@ -2,13 +2,11 @@
 
 namespace App\Services\Plans;
 use App\Repositories\Plans\PlanRepository;
-use App\Repositories\Plans\PlansRepository;
+
 
 
 class PlanService
 {
-
-
     /**
      * Create a new service instance.
      *
@@ -25,12 +23,19 @@ class PlanService
         return $this->planRepository->create($data);
     }
 
-
     public function getAll()
     {
         return $this->planRepository->all($relations = [], $columns = ['*']);
     }
 
+    public function paginate($limit = 10,$relations = [], $columns = ['*'])
+    {
+        return $this->planRepository->paginate($limit = 10,$relations = [], $columns = ['*']);
+    }
+    public function getByUUID($fild,$uuid)
+    {
+        return $this->planRepository->getByUUID($fild,$uuid);
+    }
     public function getById($id)
     {
         return $this->planRepository->findOrFail($id);
