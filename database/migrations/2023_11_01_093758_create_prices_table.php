@@ -13,6 +13,12 @@ return new class extends Migration
     {
         Schema::create('prices', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('status_id')->constrained('status');
+            $table->double('price');
+            $table->double('price_last_buy')->nullable();
+            $table->double('cost_last_buy')->nullable();
+            $table->double('cost_avg')->nullable();
+            $table->double('margin')->nullable();
             $table->timestamps();
         });
     }

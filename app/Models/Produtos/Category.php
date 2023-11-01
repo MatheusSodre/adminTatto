@@ -5,7 +5,12 @@ namespace App\Models\Produtos;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Price extends Model
+class Category extends Model
 {
     use HasFactory;
+    protected $fillable = ['uuid','name','sigla','status'];
+
+    protected $attributes = [
+        'status_id' => 1,
+    ];
 }
