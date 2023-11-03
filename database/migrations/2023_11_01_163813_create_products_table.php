@@ -26,7 +26,7 @@ return new class extends Migration
             $table->timestamps();
         });
     }
-    // 'uuid','cod','sku','bar_code','name','price_id','category_id','mark_id','supplier_id','measure_id','status_id','image'
+
     /**
      * Reverse the migrations.
      */
