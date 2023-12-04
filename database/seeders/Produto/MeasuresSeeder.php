@@ -13,12 +13,12 @@ class SupplierSeeder extends Seeder
      */
     public function run(): void
     {
-        for ($i = 1; $i <=3; $i++)
+        $measures = [ 1 => "UN", 2 => "KG", 3 => "CX",4 => "G"];
+        for ($i = 1; $i <= 4; $i++)
         {
-            $name  = "Fornecedor 0".$i;
-            DB::table('marks')->insert([
+        DB::table('measures')->insert([
                 'uuid'          => (string)Str::uuid(),
-                'name'          => $name,
+                'name'          => $measures[$i],
                 'status_id'     => 1,
                 'created_at'    =>now(),
                 'updated_at'    =>now(),

@@ -19,11 +19,11 @@ class ProductSeeder extends Seeder
         $name  = "Produto 0".$i;
             DB::table('products')->insert([
                 'uuid'     => Str::uuid(),
-                'cod'      => "10".$i,
+                'cod'      => "100".$i,
                 'sku'      => rand(10,100),
-                'bar_code' => rand(10,100),
+                'bar_code' => rand(10000,100000),
                 'name'     => $name,
-                'price_id' => rand(1,3),
+                'price_id' => rand(1,50),
                 'category_id' => rand(1,3),
                 'mark_id'     => rand(1,3),
                 'supplier_id' => rand(1,3),

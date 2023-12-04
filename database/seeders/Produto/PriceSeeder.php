@@ -13,12 +13,17 @@ class SupplierSeeder extends Seeder
      */
     public function run(): void
     {
-        for ($i = 1; $i <=3; $i++)
+        $measures = [ 1 => "UN", 2 => "KG", 3 => "CX",4 => "G"];
+        $price = (double)round(rand(1000, 9999) / 100, 2);
+        for ($i = 1; $i <= 50; $i++)
         {
-            $name  = "Fornecedor 0".$i;
-            DB::table('marks')->insert([
+        DB::table('measures')->insert([
                 'uuid'          => (string)Str::uuid(),
-                'name'          => $name,
+                'price'         => $price,
+                'price_last_buy'=> $price - ($price * 0.10),
+                'cost_last_buy' => $price - ($price * 0.25),
+                'cost_avg'      => $price - ($price * 0.27),
+                'margin'        => $price + ($price * 0.25),
                 'status_id'     => 1,
                 'created_at'    =>now(),
                 'updated_at'    =>now(),
@@ -26,3 +31,4 @@ class SupplierSeeder extends Seeder
         }
     }
 }
+
