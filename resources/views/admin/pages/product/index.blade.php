@@ -30,11 +30,14 @@
                         </tr>
                     </thead>
                     <tbody>
-                    @foreach ($plans as $plan)
+                    @dd($produtos);
+                    @foreach ($produtos as $produto)
                         <tr>
-                            <td>{{$plan->name}}</td>
-                            <td> R$ {{ number_format($plan->price, 2, ',', '.') }}</td>
-                            <td>{{$plan->description}}</td>
+                            
+                            <td>{{$produto->nome}}</td>
+                            <!-- <td> R$ {{ number_format($produto->price, 2, ',', '.') }}</td> -->
+                            <td>{{$produto->sku}}</td>
+                            <td>{{$produto->barCode}}</td>
                             <td style="width=10px;">
                                 <a class="btn btn-primary btn-sm" href="#"><i class="fas fa-folder"></i> Ver</a>
                                 <a class="btn btn-info btn-sm" href="#"><i class="fas fa-pencil-alt"></i> Edit</a>
@@ -47,7 +50,7 @@
             </div>
             <div class="card-footer">
                 <ul class="pagination pagination-sm m-0 float-right">
-                 {!! $plans->links('vendor.pagination.bootstrap-4') !!}
+                 
                 </ul>
         </div>
     </div>
