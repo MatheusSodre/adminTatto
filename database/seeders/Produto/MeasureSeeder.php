@@ -20,8 +20,8 @@ class MeasureSeeder extends Seeder
                 'uuid'          => (string)Str::uuid(),
                 'name'          => $measures[$i],
                 'status_id'     => 1,
-                'created_at'    =>now(),
-                'updated_at'    =>now(),
+                'created_at'    => now(),
+                'updated_at'    => now(),
             ]);
         }
     }

@@ -309,6 +309,11 @@ return [
             'icon' => 'fas fa-list-alt',
         ],
         [
+            'text'       => 'Produtos',
+            'url'        => 'admin/product',
+            'icon' => 'fas fa-list-alt',
+        ],
+        [
             'text'       => 'warning',
             'icon_color' => 'yellow',
             'url'        => '#',

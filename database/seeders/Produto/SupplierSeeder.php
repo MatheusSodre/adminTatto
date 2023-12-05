@@ -20,8 +20,8 @@ class SupplierSeeder extends Seeder
                 'uuid'          => (string)Str::uuid(),
                 'name'          => $name,
                 'status_id'     => 1,
-                'created_at'    =>now(),
-                'updated_at'    =>now(),
+                'created_at'    => now(),
+                'updated_at'    => now(),
             ]);
         }
     }
