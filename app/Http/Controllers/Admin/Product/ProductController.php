@@ -17,7 +17,7 @@ class ProductController extends Controller
     public function index()
     {
         // $produto =  ProductResource::collection($this->productService->getAll());
-        $produto =  Response::json(ProductResource::collection($this->productService->paginate()));
-        return view("admin.pages.product.index")->with('produtos', $produto);
+        $produto =  new ProductResource($this->productService->paginate());
+        return view("admin.pages.product.index",compact('produto'));
     }
 }
