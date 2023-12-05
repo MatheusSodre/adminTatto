@@ -6,7 +6,7 @@ use DB;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
-class SupplierSeeder extends Seeder
+class MeasureSeeder extends Seeder
 {
     /**
      * Run the database seeds.

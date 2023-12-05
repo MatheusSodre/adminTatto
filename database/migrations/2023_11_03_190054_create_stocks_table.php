@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->uuid('uuid');
             $table->foreignId('product_id')->constrained('products');
+            $table->foreignId('status_id')->constrained('status');
             $table->integer('quantity');
             $table->integer('quantity_min');
             $table->integer('quantity_max');

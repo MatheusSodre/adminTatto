@@ -16,7 +16,7 @@ class SupplierSeeder extends Seeder
         for ($i = 1; $i <=3; $i++)
         {
             $name  = "Fornecedor 0".$i;
-            DB::table('marks')->insert([
+            DB::table('suppliers')->insert([
                 'uuid'          => (string)Str::uuid(),
                 'name'          => $name,
                 'status_id'     => 1,

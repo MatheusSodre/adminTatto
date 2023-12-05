@@ -7,10 +7,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Product extends Model
+class Stock extends Model
 {
     use HasFactory;
-    protected $fillable = ['uuid','cod','sku','bar_code','name','price_id','category_id','mark_id','supplier_id','measure_id','status_id','image'];
+
+protected $fillable = ['uuid','product_id','quantity','quantity_min','quantity_max','status_id'];
+
     protected $attributes = [
         'status_id' => 1,
     ];
@@ -20,3 +22,4 @@ class Product extends Model
         return $this->belongsTo(Status::class);
     }
 }
+

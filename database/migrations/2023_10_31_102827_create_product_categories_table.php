@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('categories', function (Blueprint $table) {
+        Schema::create('product_categories', function (Blueprint $table) {
             $table->id();
             $table->uuid('uuid');
             $table->string('name');
@@ -20,12 +20,12 @@ return new class extends Migration
             $table->timestamps();
         });
     }
-    // 'uuid','name','sigla','status'
+
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('categories');
+        Schema::dropIfExists('product_categories');
     }
 };

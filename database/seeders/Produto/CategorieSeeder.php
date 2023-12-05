@@ -5,6 +5,7 @@ namespace Database\Seeders\Produto;
 use DB;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
 
 class CategorieSeeder extends Seeder
 {
@@ -16,12 +17,14 @@ class CategorieSeeder extends Seeder
         for ($i = 1; $i <=3; $i++)
         {
             $name  = "Categoria 0".$i;
-            DB::table('marks')->insert([
-                'name'          => $name,
-                'status_id'     => 1,
-                'created_at'    =>now(),
-                'updated_at'    =>now(),
+            DB::table('product_categories')->insert([
+                'uuid'       => Str::uuid(),
+                'name'       => $name,
+                'status_id'  => 1,
+                'created_at' =>now(),
+                'updated_at' =>now(),
             ]);
         }
     }
+    
 }

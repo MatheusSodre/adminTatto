@@ -7,10 +7,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Product extends Model
+class ProductCategorie extends Model
 {
     use HasFactory;
-    protected $fillable = ['uuid','cod','sku','bar_code','name','price_id','category_id','mark_id','supplier_id','measure_id','status_id','image'];
+
+    use HasFactory;
+    protected $fillable = ['uuid','name','sigla','status_id'];
+
     protected $attributes = [
         'status_id' => 1,
     ];
