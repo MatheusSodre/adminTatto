@@ -2,6 +2,7 @@
 
 namespace App\Models\Status;
 
+use App\Models\Price\Price;
 use App\Models\Produtos\{Product,Supplier,Mark,Measure,ProductCategorie,Stock};
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -36,5 +37,9 @@ class Status extends Model
     public function stock(): HasMany
     {
         return $this->hasMany(Stock::class);
+    }
+    public function price(): HasMany
+    {
+        return $this->hasMany(Price::class);
     }
 }

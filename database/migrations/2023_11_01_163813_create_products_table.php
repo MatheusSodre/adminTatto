@@ -18,8 +18,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('sku');
             $table->string('bar_code');
-            $table->foreignId('price_id')->constrained('prices')->nullable();
-            $table->foreignId('product_category_id')->constrained('product_categories')->nullable();
+            $table->foreignId('product_categorie_id')->constrained('product_categories')->nullable();
             $table->foreignId('mark_id')->constrained('marks')->nullable();
             $table->foreignId('supplier_id')->constrained('suppliers')->nullable();
             $table->foreignId('measure_id')->constrained('measures')->nullable();

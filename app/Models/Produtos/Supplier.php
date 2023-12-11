@@ -6,6 +6,7 @@ use App\Models\Status\Status;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Supplier extends Model
 {
@@ -20,5 +21,9 @@ class Supplier extends Model
     public function status(): BelongsTo
     {
         return $this->belongsTo(Status::class);
+    }
+    public function product(): HasMany
+    {
+        return $this->hasMany(Product::class);
     }
 }

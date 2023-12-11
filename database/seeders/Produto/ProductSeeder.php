@@ -6,7 +6,7 @@ namespace Database\Seeders\Produto;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
-
+use DB;
 class ProductSeeder extends Seeder
 {
     /**
@@ -23,8 +23,7 @@ class ProductSeeder extends Seeder
                 'sku'      => (string)rand(1000000,10000000),
                 'bar_code' => (string)rand(10000,100000),
                 'name'     => $name,
-                'price_id' => rand(1,50),
-                'product_category_id' => rand(1,3),
+                'product_categorie_id' => rand(1,3),
                 'mark_id'     => rand(1,3),
                 'supplier_id' => rand(1,3),
                 'measure_id'  => rand(1,2),

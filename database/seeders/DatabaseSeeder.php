@@ -24,10 +24,10 @@ class DatabaseSeeder extends Seeder
             StatusSeeder::class,
             MarkSeeder::class,
             CategorieSeeder::class,
-            PriceSeeder::class,
             SupplierSeeder::class,
             MeasureSeeder::class,
             ProductSeeder::class,
+            PriceSeeder::class,
             StockSeeder::class
         ]);
         

@@ -31,7 +31,7 @@ class ProductService
 
     public function paginate($limit = 10,$relations = [], $columns = ['*'])
     {
-        return $this->productRepository->paginate($limit = 10,$relations = [], $columns = ['*']);
+        return $this->productRepository->paginate($limit ,$relations , $columns);
     }
     public function getByUUID($fild,$uuid)
     {

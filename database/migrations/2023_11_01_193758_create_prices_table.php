@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->uuid('uuid');
             $table->foreignId('status_id')->constrained('status');
+            $table->foreignId('product_id')->constrained('products')->nullable();
             $table->double('price');
             $table->double('price_last_buy')->nullable();
             $table->double('cost_last_buy')->nullable();

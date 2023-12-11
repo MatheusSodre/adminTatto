@@ -14,7 +14,7 @@ class PriceSeeder extends Seeder
     public function run(): void
     {
         
-        for ($i = 1; $i <= 50; $i++)
+        for ($i = 1; $i <= 40; $i++)
         {
         $price = (double)round(rand(1000, 9999) / 100, 2);
         DB::table('prices')->insert([
@@ -24,6 +24,7 @@ class PriceSeeder extends Seeder
                 'cost_last_buy' =>  number_format($price - ($price * 0.25),2),
                 'cost_avg'      =>  number_format($price - ($price * 0.27),2),
                 'margin'        =>  number_format($price + ($price * 0.25),2),
+                'product_id'    =>  $i,
                 'status_id'     => 1,
                 'created_at'    =>now(),
                 'updated_at'    =>now(),

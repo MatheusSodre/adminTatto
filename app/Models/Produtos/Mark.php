@@ -6,6 +6,7 @@ use App\Models\Status\Status;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Mark extends Model
 {
@@ -20,5 +21,9 @@ class Mark extends Model
     public function status(): BelongsTo
     {
         return $this->belongsTo(Status::class);
+    }
+    public function product(): HasMany
+    {
+        return $this->hasMany(Product::class);
     }
 }
