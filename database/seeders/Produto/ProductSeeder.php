@@ -6,7 +6,6 @@ use DB;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
-use DB;
 class ProductSeeder extends Seeder
 {
     /**

@@ -45,4 +45,4 @@ class Product extends Model
     {
         return $this->belongsTo(Measure::class);
     }
-} 
+}
