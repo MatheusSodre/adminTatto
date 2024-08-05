@@ -10,10 +10,10 @@ Route::get('/', function () {
     return response()->json(['message' => 'success']);
 });
 
-Route::apiResource('categories',CategoryController::class);
-
-Route::apiResource('companies',CompanyController::class);
-
-Route::Resource('product',ProductController::class);
-
-
+//Route::apiResource('categories',CategoryController::class);
+//
+//Route::apiResource('companies',CompanyController::class);
+//
+//Route::Resource('product',ProductController::class);
+//
+//
