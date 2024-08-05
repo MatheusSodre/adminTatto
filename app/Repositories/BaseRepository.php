@@ -29,9 +29,9 @@ class BaseRepository implements BaseRepositoryInterface
      * @param  array  $columns
      * @return mixed
      */
-    public function all($relations = [], $columns = ['*']): mixed
+    public function all($relations = [], $columns = ['*'],$limit = 10): mixed
     {
-        return $this->model::with($relations)->get($columns);
+        return $this->model::with($relations)->select($columns)->latest()->paginate($limit);
     }
 
     /**
@@ -133,8 +133,8 @@ class BaseRepository implements BaseRepositoryInterface
     {
         return $this->getByUUID($field,$uuid)->update($data);
     }
-    public function destroyByUUID(string $field,string $uuid) 
+    public function destroyByUUID(string $field,string $uuid)
     {
-        return $this->getByUUID($field,$uuid)->delete(); 
+        return $this->getByUUID($field,$uuid)->delete();
     }
 }

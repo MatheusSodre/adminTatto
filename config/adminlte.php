@@ -301,8 +301,8 @@ return [
         //     'topnav_right' => true,
         // ],
 
-        // Sidebar items:      
-        
+        // Sidebar items:
+
         [
             'text'       => 'Planos',
             'url'        => 'admin/plans',
@@ -311,18 +311,23 @@ return [
         [
             'text'       => 'Produtos',
             'url'        => 'admin/product',
-            'icon' => 'fas fa-list-alt',
+            'icon' => 'fa fa-cube',
         ],
         [
-            'text'       => 'warning',
-            'icon_color' => 'yellow',
-            'url'        => '#',
+            'text'       => 'Perfis',
+            'url'        => 'admin/profiles',
+            'icon' => 'fa fa-address-book',
         ],
-        [
-            'text'       => 'information',
-            'icon_color' => 'cyan',
-            'url'        => '#',
-        ],
+//        [
+//            'text'       => 'warning',
+//            'icon_color' => 'yellow',
+//            'url'        => '#',
+//        ],
+//        [
+//            'text'       => 'information',
+//            'icon_color' => 'cyan',
+//            'url'        => '#',
+//        ],
     ],
 
     /*
@@ -443,6 +448,21 @@ return [
                     'type' => 'js',
                     'asset' => false,
                     'location' => '//cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js',
+                ],
+            ],
+        ],
+        'BootstrapSelect' => [
+            'active' => false,
+            'files' => [
+                [
+                    'type' => 'js',
+                    'asset' => true,
+                    'location' => 'vendor/bootstrap-select/dist/js/bootstrap-select.min.js',
+                ],
+                [
+                    'type' => 'css',
+                    'asset' => true,
+                    'location' => 'vendor/bootstrap-select/dist/css/bootstrap-select.min.css',
                 ],
             ],
         ],
