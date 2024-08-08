@@ -4,13 +4,14 @@ namespace App\Repositories\Admin;
 
 
 use App\Models\Admin\Profile;
+use App\Models\Permission\Permission;
 use App\Repositories\BaseRepository;
 
-class ProfileRepository extends BaseRepository
+class PermissionRepository extends BaseRepository
 {
-    public function __construct(Profile $profile)
+    public function __construct(Permission $permission)
     {
-        $this->model = $profile;
+        $this->model = $permission;
     }
 
     public function search($request)
@@ -22,11 +23,6 @@ class ProfileRepository extends BaseRepository
                                   ->orWhere('description', 'LIKE', "%{$request->filter}%");
                         }
                         })->paginate();
-    }
-
-    public function find($id)
-    {
-        return $this->model::find($id);
     }
 }
 ?>

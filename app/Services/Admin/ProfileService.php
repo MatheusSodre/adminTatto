@@ -22,9 +22,9 @@ class ProfileService
         return $this->profileRepository->create($data);
     }
 
-    public function all()
+    public function all($relations = [], $columns = ['*'],$limit = 10)
     {
-        return $this->profileRepository->all();
+        return $this->profileRepository->all($relations , $columns ,$limit );
     }
 
     public function paginate()
@@ -50,5 +50,10 @@ class ProfileService
     public function search($resquet)
     {
         return $this->profileRepository->search($resquet);
+    }
+
+    public function find($id)
+    {
+        return $this->profileRepository->find($id);
     }
 }

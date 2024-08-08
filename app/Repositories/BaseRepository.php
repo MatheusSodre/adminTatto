@@ -82,7 +82,7 @@ class BaseRepository implements BaseRepositoryInterface
 
     public function update(array $data, $id)
     {
-        return $this->model->findOrFail($id)->update($data);;
+        return $this->model->findOrFail($id)->update($data);
     }
 
     /**

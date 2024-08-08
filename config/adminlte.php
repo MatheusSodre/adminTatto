@@ -318,6 +318,11 @@ return [
             'url'        => 'admin/profiles',
             'icon' => 'fa fa-address-book',
         ],
+        [
+            'text'       => 'Permissões',
+            'url'        => 'admin/permissions',
+            'icon' => 'fa fa-unlock-alt',
+        ],
 //        [
 //            'text'       => 'warning',
 //            'icon_color' => 'yellow',
