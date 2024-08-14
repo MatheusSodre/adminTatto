@@ -16,18 +16,20 @@ Route::prefix('admin')
         Route::get('product',[ProductController::class,'index'])->name('product.index');
 
              /**
-              * Permicions X Profiles
+              * Permissions X Profiles
               */
-        Route::post('roles/{id}/permissions/store', [PermissionProfileController::class,'attachPermissionProfile'])->name('profiles.permissions.attach');
-        Route::get('roles/{id}/permissions/create', [PermissionProfileController::class,'permissionsAvailable'])->name('profiles.permissions.available');
+        Route::post('profiles/{id}/permissions/store', [PermissionProfileController::class,'attachPermissionProfile'])->name('profiles.permissions.attach');
+        Route::get('profiles/{id}/permissions/{idPermission}/detach', [PermissionProfileController::class,'detachPermissionProfile'])->name('profiles.permissions.detach');
+        Route::any('profiles/{id}/permissions/create', [PermissionProfileController::class,'permissionsAvailable'])->name('profiles.permissions.available');
         Route::get('profiles/{id}/permissions',[PermissionProfileController::class,'permissions'])->name('profiles.permissions');
+        Route::any('permissions/{id}/profile', [PermissionProfileController::class,'profiles'])->name('permissions.profile');
             /**
              * Profiles
              */
         Route::any('profiles/search', [ProfileController::class,'search'])->name('profiles.search');
         Route::resource('profiles', ProfileController::class);
              /**
-              * permissions
+              * Permissions
               */
         Route::any('permissions/search', [PermissionController::class,'search'])->name('permissions.search');
         Route::resource('permissions', PermissionController::class);
@@ -48,7 +50,4 @@ Route::prefix('admin')
 // });
 
 
-//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-//
-//Auth::routes();
-//
+Auth::routes();

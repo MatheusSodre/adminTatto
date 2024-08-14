@@ -316,7 +316,7 @@ return [
         [
             'text'       => 'Perfis',
             'url'        => 'admin/profiles',
-            'icon' => 'fa fa-address-book',
+            'icon' => 'fa fa-users',
         ],
         [
             'text'       => 'Permissões',

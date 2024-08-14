@@ -18,15 +18,21 @@ class Profile extends Model
 
     }
 
-    public function pemissionAvailable()
+    public function pemissionAvailable($filter)
     {
-        $permission = Permission::whereNotIn('id',function($query){
-            $query->select('permission_profile.permission_id')
-                  ->from('permission_profile')
-                  ->whereRaw("permission_profile.profile_id = {$this->id}");
+            $permission = Permission::whereNotIn('permissions.id',function($query){
+            $query->select('permissions_profile.permission_id')
+                  ->from('permissions_profile')
+                  ->whereRaw("permissions_profile.profile_id = {$this->id}");
 
-        })
-            ->paginate();
+            })
+            ->where(function($queryFilter) use ($filter){
+                if ($filter) {
+                    $queryFilter->where('permissions.name', 'LIKE',"%{$filter}%");
+                }
+
+            })
+                ->paginate();
         return $permission;
     }
 }

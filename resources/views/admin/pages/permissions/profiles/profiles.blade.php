@@ -5,17 +5,10 @@
 @section('content_header')
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{{ route('admin.index') }}">Dashboard</a></li>
-        <li class="breadcrumb-item active"><a href="{{ route('profiles.index') }}" class="active">Perfis</a></li>
+        <li class="breadcrumb-item active"><a href="{{ route('permissions.index') }}" class="active">Perfis</a></li>
     </ol>
 
-    {{--    <div class="ms-2">--}}
-    {{--        <div class="btn btn-dark btn-lg btn-flat" data-toggle="modal" data-target="#modal-xl">--}}
-    {{--            <i class="fas fa-plus-square fa-lg mr-2"></i>Add New--}}
-    {{--        </div>--}}
-    {{--    </div>--}}
-
-    <h1>Permissões do perfil <strong> {{$profile->name}}</strong> </h1>
-    <a href="{{ route('profiles.permissions.available',$profile->id) }}" class="btn btn-dark">ADD NOVA PERMISSÃO</a>
+    <h1>Perfil da Permissão <strong> {{$permission->name}}</strong> </h1>
 @stop
 
 @section('content')
@@ -36,10 +29,10 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($permissions as $permission)
+                    @foreach ($profiles as $profile)
                         <tr>
                             <td>
-                                {{ $permission->name }}
+                                {{ $profile->name }}
                             </td>
                             <td style="width=10px;">
                                 <a href="{{ route('profiles.permissions.detach',[$profile->id,$permission->id]) }}" class="btn btn-danger" ><i placeholder="remover" class="fa fa-trash" ></i></a>
@@ -51,9 +44,9 @@
         </div>
         <div class="card-footer">
            @if (isset($filters))
-               {!! $permissions->appends($filters)->links() !!}
+               {!! $profiles->appends($filters)->links() !!}
            @else
-               {!! $permissions->links() !!}
+               {!! $profiles->links() !!}
             @endif
         </div>
     </div>
