@@ -1,23 +1,23 @@
 @extends('adminlte::page')
 
-@section('title', 'Dashboard')
+@section('title', 'Planos')
 
 @section('content_header')
 <h1>Planos</h1>
 @stop
 @section('content')
 <div class="row">
-    <div class="col-12"> 
-        <div class="card"> 
-            <div class="card-header"> 
-                <h3 class="card-title">Tabelas Planos</h3> 
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Tabelas Planos</h3>
             </div>
-        
+
             <div class="card-body">
-                <div class="ms-2"> 
-                    <div class="btn btn-dark btn-lg btn-flat" data-toggle="modal" data-target="#modal-xl"> 
+                <div class="ms-2">
+                    <div class="btn btn-dark btn-lg btn-flat" data-toggle="modal" data-target="#modal-xl">
                         <i class="fas fa-plus-square fa-lg mr-2"></i>Add New
-                    </div> 
+                    </div>
                 </div>
                 <table class="table">
                     <thead>
@@ -50,7 +50,7 @@
                 </ul>
         </div>
     </div>
-</div>    
+</div>
     <div class="modal fade" id="modal-xl" style="display: none;" aria-hidden="true">
         <div class="modal-dialog modal-xl">
             <div class="modal-content">
@@ -77,8 +77,8 @@
                             <input type="text" name="description" class="form-control" placeholder="Descrição:" >
                         </div>
                         <div class="form-group modal-footer justify-content-between">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>        
-                            <button type="submit" class="btn btn-dark">Enviar</button>        
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-dark">Enviar</button>
                         </div>
                     </form>
                 </div>

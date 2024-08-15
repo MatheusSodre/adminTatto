@@ -2,7 +2,7 @@
 
 namespace App\Repositories\Company;
 use App\Repositories\Interfaces\Company\CompanyRepositoryInterface;
-use App\Models\Company\Company;
+use App\Models\Company;
 use App\Repositories\BaseRepository;
 
 class CompanyRepository  extends BaseRepository implements CompanyRepositoryInterface
@@ -20,9 +20,9 @@ class CompanyRepository  extends BaseRepository implements CompanyRepositoryInte
     {
         return $this->getCompanyByUUID($field,$uuid)->update($data);
     }
-    public function destroyByUUID(string $field,string $uuid) 
+    public function destroyByUUID(string $field,string $uuid)
     {
-        return $this->getCompanyByUUID($field,$uuid)->delete(); 
+        return $this->getCompanyByUUID($field,$uuid)->delete();
     }
 }
 ?>

@@ -2,7 +2,7 @@
 
 namespace App\Observers\Company;
 
-use App\Models\Company\Company;
+use App\Models\Company;
 use Illuminate\Support\Str;
 
 class CompanyObserve

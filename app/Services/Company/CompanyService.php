@@ -27,7 +27,7 @@ class CompanyService
     public function store(array $data)
     {
             $company = $this->companyRepository->create($data);
-            CompanyCreatedEmail::dispatch($company->email)->onQueue('queue-micro-email');
+            // CompanyCreatedEmail::dispatch($company->email)->onQueue('queue-micro-email');
         return $company;
 
     }
@@ -53,7 +53,7 @@ class CompanyService
     }
 
     public function destroyByUUID($filed,$id)
-    {   
+    {
         return $this->companyRepository->destroyByUUID($filed,$id);
     }
 }
