@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Admin\ACL;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Permissions\StoreUpdatePermissions;
-use App\Http\Requests\permissions\StoreUpdateProfile;
+use App\Http\Requests\Admin\StoreUpdatePermissions;
+
 use App\Services\Admin\PermissionService;
 
 use Illuminate\Http\Request;
@@ -36,7 +36,7 @@ class PermissionController extends Controller
     /**
      * Store a newly created resource in storage.
      * @param int $id
-     * @param StoreUpdateProfile
+     * @param StoreUpdatePermissions
      */
     public function store(StoreUpdatePermissions $request)
     {

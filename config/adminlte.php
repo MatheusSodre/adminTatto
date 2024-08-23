@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => 'Admin Tatto',
+    'title' => 'Admin Elo',
     'title_prefix' => '',
     'title_postfix' => '',
 
@@ -63,12 +63,12 @@ return [
     |
     */
 
-    'logo' => '<b>Ink</b>Tatto',
+    'logo' => '<b>Elo</b>',
     'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
-    'logo_img_alt' => 'InkTatto',
+    'logo_img_alt' => 'Elo',
 
     /*
     |--------------------------------------------------------------------------
@@ -303,36 +303,36 @@ return [
 
         // Sidebar items:
 
+        // [
+        //     'text'       => 'Planos',
+        //     'url'        => 'admin/plans',
+        //     'icon' => 'fas fa-list-alt',
+        // ],
         [
-            'text'       => 'Planos',
-            'url'        => 'admin/plans',
-            'icon' => 'fas fa-list-alt',
-        ],
-        [
-            'text'       => 'Produtos',
-            'url'        => 'admin/product',
-            'icon' => 'fa fa-cube',
+            'text'       => 'Clientes',
+            'url'        => 'admin/users',
+            'icon' => 'fa fa-users',
         ],
         [
             'text'       => 'Perfis',
             'url'        => 'admin/profiles',
-            'icon' => 'fa fa-users',
+            'icon' => 'fa fa-id-card',
         ],
         [
             'text'       => 'Permissões',
             'url'        => 'admin/permissions',
             'icon' => 'fa fa-unlock-alt',
         ],
-//        [
-//            'text'       => 'warning',
-//            'icon_color' => 'yellow',
-//            'url'        => '#',
-//        ],
-//        [
-//            'text'       => 'information',
-//            'icon_color' => 'cyan',
-//            'url'        => '#',
-//        ],
+    //    [
+    //        'text'       => 'warning',
+    //        'icon_color' => 'yellow',
+    //        'url'        => '#',
+    //    ],
+    //    [
+    //        'text'       => 'information',
+    //        'icon_color' => 'cyan',
+    //        'url'        => '#',
+    //    ],
     ],
 
     /*

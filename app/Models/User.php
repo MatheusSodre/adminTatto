@@ -3,13 +3,18 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use App\Company\Scopes\CompanyScope;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Company\Traits\CompanyTrait;
 
 class User extends Authenticatable
 {
+
+    use CompanyTrait;
     use HasApiTokens, HasFactory, Notifiable;
 
     /**
@@ -19,9 +24,12 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'cnpj',
+        'company_id',
         'email',
         'password',
     ];
+
 
     /**
      * The attributes that should be hidden for serialization.
@@ -41,4 +49,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * company.
+     *
+     * @var array<string, string>
+     */
+    public function company(){
+        return $this->belongsTo(Company::class);
+    }
 }
+

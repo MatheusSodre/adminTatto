@@ -1,14 +1,15 @@
 <?php
 
 use App\Http\Controllers\Admin\ACL\{PermissionController,PermissionProfileController,ProfileController};
-use App\Http\Controllers\Admin\PlanController;
+use App\Http\Controllers\Admin\{PlanController,CompanyController};
 use App\Http\Controllers\Admin\Product\ProductController;
-use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
 
 
 Route::prefix('admin')
-     ->group(callback: function() {
+        ->middleware('auth')
+        ->group(callback: function() {
 
 
         Route::get('plans/{uuid}',[PlanController::class,'index'])->name('plans.index');
@@ -38,6 +39,12 @@ Route::prefix('admin')
         Route::resource('permissions', PermissionController::class);
 
         /**
+         * Users
+         */
+        Route::any('users/search', [UserController::class,'search'])->name('users.search');
+        Route::resource('users', UserController::class);
+
+        /**
          * company
          */
         Route::get('company', [CompanyController::class,'index'])->name('company.index');
@@ -45,15 +52,11 @@ Route::prefix('admin')
         /**
          * Home Dashboard
          */
-        Route::get('/', 'DashboardController@home')->name('admin.index');
+        // Route::get('/', 'DashboardController@home')->name('admin.index');
+        Route::get('/', [UserController::class,'index'])->name('admin.index');
 
     });
 
-
-
-// Route::get('/', function () {
-//     return view('welcome');
-// });
 
 
 Auth::routes();

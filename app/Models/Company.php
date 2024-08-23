@@ -12,4 +12,9 @@ class Company extends Model
     protected $fillable = [
         'cnpj', 'name', 'url', 'email', 'logo', 'active'
     ];
+
+    public function users()
+    {
+      return $this->hasMany(User::class);
+    }
 }

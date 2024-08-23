@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Services\Company;
+namespace App\Services\Admin\Company;
 
 
 
 use App\Jobs\CompanyCreate;
 use App\Jobs\CompanyCreatedEmail;
-use App\Repositories\Company\CompanyRepository;
+use App\Repositories\Admin\CompanyRepository;
+
 
 
 class CompanyService

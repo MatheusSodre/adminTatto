@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Admin\ACL;
 
-use App\Http\Requests\Profiles\StoreUpdateProfile;
+
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\StoreUpdateProfile;
 use App\Services\Admin\ProfileService;
 use http\Client\Response;
 use Illuminate\Http\Request;

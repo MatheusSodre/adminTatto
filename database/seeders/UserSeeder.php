@@ -2,8 +2,7 @@
 
 namespace Database\Seeders;
 
-use DB;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Company;
 use Illuminate\Database\Seeder;
 
 class UserSeeder extends Seeder
@@ -13,12 +12,15 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('users')->insert([
+        $company = Company::first();
+
+        $company->users()->create(
             [
                 'name'  => "Matheus",
+                'cnpj'  => "12345678901234",
                 'email' => "matheus@test.com" ,
                 'password' => bcrypt('123456'),
             ]
-        ]);
+        );
     }
 }
