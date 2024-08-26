@@ -2,15 +2,14 @@
 
 namespace App\Repositories\Admin;
 
-
-use App\Models\Admin\Profile;
+use App\Models\Files\Files;
 use App\Repositories\BaseRepository;
 
-class ProfileRepository extends BaseRepository
+class FilesRepository extends BaseRepository
 {
-    public function __construct(Profile $profile)
+    public function __construct(Files $files)
     {
-        $this->model = $profile;
+        $this->model = $files;
     }
 
     public function search($request)

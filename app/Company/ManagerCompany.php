@@ -8,6 +8,7 @@ class ManagerCompany
 {
     public function getCompanyIdentify()
     {
+        // return auth()->check() ? auth()->user()->company_id : 1;
         return 1;
     }
 

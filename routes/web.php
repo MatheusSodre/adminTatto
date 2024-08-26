@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\ACL\{PermissionController,PermissionProfileController,ProfileController};
-use App\Http\Controllers\Admin\{PlanController,CompanyController};
+use App\Http\Controllers\Admin\{PlanController,CompanyController, FilesController};
 use App\Http\Controllers\Admin\Product\ProductController;
 use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
@@ -32,6 +32,11 @@ Route::prefix('admin')
         Route::any('profiles/search', [ProfileController::class,'search'])->name('profiles.search');
         Route::resource('profiles', ProfileController::class);
 
+        /**
+         * Profiles
+         */
+        Route::any('files/search', [FilesController::class,'search'])->name('files.search');
+        Route::resource('files', FilesController::class);
         /**
          * Permissions
         */

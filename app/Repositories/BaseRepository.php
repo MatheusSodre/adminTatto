@@ -69,6 +69,17 @@ class BaseRepository implements BaseRepositoryInterface
     }
 
     /**
+     * Return an entity.
+     *
+     * @param  int  $id
+     * @return mixed
+     */
+    public function find($id)
+    {
+        return $this->model::find($id);
+    }
+}
+    /**
      * Update an entity.
      *
      * @param  Model  $entity

@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Database\Seeders\Admin\CompanySeeder;
+use Database\Seeders\Admin\TypeFilesSeeder;
 use Database\Seeders\Produto\{SupplierSeeder,CategorieSeeder,MarkSeeder,PlanSeeder,MeasureSeeder,ProductSeeder,PriceSeeder,StockSeeder};
 
 
@@ -18,9 +19,10 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $this->call([
-            // PlanSeeder::class,
+
             CompanySeeder::class,
-            UserSeeder::class
+            UserSeeder::class,
+            TypeFilesSeeder::class
             // StatusSeeder::class,
             // MarkSeeder::class,
             // CategorieSeeder::class,

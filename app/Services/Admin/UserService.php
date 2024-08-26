@@ -4,8 +4,6 @@ namespace App\Services\Admin;
 
 
 
-use App\Jobs\CompanyCreate;
-use App\Jobs\CompanyCreatedEmail;
 use App\Repositories\Admin\UserRepository;
 
 
@@ -28,7 +26,6 @@ class UserService
 
     public function store(array $data)
     {
-        // $data['company_id'] = auth()->user()->company_id;
         $data['password'] = bcrypt($data['password']);
         return $this->userRepository->create($data);
     }
