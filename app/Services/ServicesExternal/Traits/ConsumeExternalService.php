@@ -3,7 +3,7 @@ namespace App\Services\ServicesExternal\Traits;
 use Http;
 
 /**
- * 
+ *
  */
 trait ConsumeExternalService
 {

@@ -3,7 +3,7 @@
 namespace App\Providers;
 
 
-use App\Models\{
+use App\Models\Admin\{
     Category,
     Company
 };

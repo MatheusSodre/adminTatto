@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Helpers\Logger\Uteis;
 use App\Http\Controllers\Controller;
 
 use App\Http\Requests\Admin\StoreUpdateUsers;
+use App\Http\Resources\Admin\UserResouce;
 use App\Services\Admin\UserService;
 use Illuminate\Http\Request;
 
@@ -20,7 +22,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = $this->userService->all();
+
+        $users = $this->userService->paginate();
         return view("admin.pages.users.index", compact('users'));
     }
 

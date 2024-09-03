@@ -49,8 +49,10 @@
                                 {{ $user->email }}
                             </td>
                             <td style="width=10px;">
-                                <a href="{{ route('users.edit', $user->id) }}" class="btn btn-info">Edit</a>
-                                <a href="{{ route('users.show', $user->id) }}" class="btn btn-warning">VER</a>
+                                <a href="{{ route('users.profiles', $user->id) }}" class="btn btn-info"><i class="fa fa-id-card " aria-hidden="true"></i></a>
+                                <a href="{{ route('users.edit', $user->id) }}" class="btn btn-info"><i class="fas fa-pencil-alt" aria-hidden="true"></i></i></a>
+                                <a href="{{ route('users.show', $user->id) }}" class="btn btn-warning"><i class="fa fa-search" ></i></a>
+                                <a href="{{ route('files.getFileUser', $user->id) }}" class="btn btn-warning"><i class="fa fa-file" aria-hidden="true"></i></a>
                             </td>
                         </tr>
                     @endforeach
@@ -63,24 +65,6 @@
             @else
                 {!! $users->links() !!}
             @endif
-        </div>
-    </div>
-    <div class="modal fade" id="modal-xl" style="display: none;" aria-hidden="true">
-        <div class="modal-dialog modal-xl">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">Novo Perfil</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form action="{{ route('users.store') }}" class="form" method="POST">
-                        @csrf
-                        @include('admin.pages.users._partials.form')
-                    </form>
-                </div>
-            </div>
         </div>
     </div>
 @stop

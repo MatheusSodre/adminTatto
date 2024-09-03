@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Company;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class UserSeeder extends Seeder
 {
@@ -14,13 +15,22 @@ class UserSeeder extends Seeder
     {
         $company = Company::first();
 
-        $company->users()->create(
+        DB::table('users')->insert([
             [
                 'name'  => "Matheus",
+                'company_id' => $company->id,
                 'cnpj'  => "12345678901234",
                 'email' => "matheus@test.com" ,
                 'password' => bcrypt('123456'),
+            ],
+            [
+                'name'  => "Cliente1",
+                'company_id' => $company->id,
+                'cnpj'  => "123456789415494",
+                'email' => "Cliente1@test.com" ,
+                'password' => bcrypt('123456'),
             ]
+        ]
         );
     }
 }

@@ -314,6 +314,11 @@ return [
             'icon' => 'fa fa-users',
         ],
         [
+            'text'       => 'Arquivos',
+            'url'        => 'admin/files',
+            'icon' => 'fa fa-file',
+        ],
+        [
             'text'       => 'Perfis',
             'url'        => 'admin/profiles',
             'icon' => 'fa fa-id-card',
@@ -323,16 +328,6 @@ return [
             'url'        => 'admin/permissions',
             'icon' => 'fa fa-unlock-alt',
         ],
-    //    [
-    //        'text'       => 'warning',
-    //        'icon_color' => 'yellow',
-    //        'url'        => '#',
-    //    ],
-    //    [
-    //        'text'       => 'information',
-    //        'icon_color' => 'cyan',
-    //        'url'        => '#',
-    //    ],
     ],
 
     /*
@@ -471,6 +466,36 @@ return [
                 ],
             ],
         ],
+        'BsCustomFileInput' => [
+        'active' => false,
+        'files' => [
+            [
+                'type' => 'js',
+                'asset' => true,
+                'location' => 'vendor/bs-custom-file-input/bs-custom-file-input.min.js',
+            ],
+        ],
+        'DateRangePicker' => [
+            'active' => false,
+            'files' => [
+                [
+                    'type' => 'js',
+                    'asset' => true,
+                    'location' => 'vendor/moment/moment.min.js',
+                ],
+                [
+                    'type' => 'js',
+                    'asset' => true,
+                    'location' => 'vendor/daterangepicker/daterangepicker.js',
+                ],
+                [
+                    'type' => 'css',
+                    'asset' => true,
+                    'location' => 'vendor/daterangepicker/daterangepicker.css',
+                ],
+            ],
+        ],
+    ],
     ],
 
     /*

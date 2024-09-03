@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 
-use App\Services\Admin\Company\CompanyService;
+use App\Services\Admin\CompanyService;
 use Illuminate\Http\Request;
 
 class CompanyController extends Controller

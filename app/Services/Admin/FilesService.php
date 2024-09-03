@@ -3,7 +3,9 @@
 namespace App\Services\Admin;
 
 use App\Repositories\Admin\FilesRepository;
-use mysql_xdevapi\Collection;
+use Illuminate\Http\Request;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
 
 class FilesService
 {
@@ -18,24 +20,60 @@ class FilesService
 
     }
 
-    public function store(array $data)
+    public function store(Request $request)
     {
-        return $this->filesRepository->create($data);
+        $data = $request->all();
+        $data['data_arquivo'] = $this->getDateArquivo($data['data_arquivo']);
+        if ($request->file('files'))
+        {
+            foreach ($request->file('files') as $file)
+            {
+                $data['name'] = !empty($data['name']) ? $this->storeAs($file, 'files', $data['name']) : $file->getClientOriginalName();
+                $filePath = $file->store('files', 'public'); // Armazena na pasta `storage/app/public/files`
+                $data['path'] = $filePath;
+                $this->filesRepository->create($data);
+            }
+        }
+        return true;
     }
 
-    public function all($relations = [], $columns = ['*'],$limit = 10)
+    public function getDateArquivo($date):String
     {
-        return $this->filesRepository->all($relations , $columns ,$limit );
+        return str_replace('/', '-', $date);
     }
 
-    public function paginate()
+    public function storeAs(UploadedFile $file,string $path,string $customName): string
     {
-        return $this->filesRepository->paginate($relations = [], $columns = ['*']);
+        return $file->storeAs($path,$customName);
     }
 
-    public function getById($id)
+    public function removeFile($file): bool
     {
-        return $this->filesRepository->findOrFail($id);
+        if(Storage::exists($file->path)){
+            $this->destroy($file->id);
+            return Storage::delete($file->path);
+        }
+        return false;
+    }
+
+    public function download($file)
+    {
+        // Verifica se o arquivo existe
+        if (!Storage::exists($file->path)) {
+            abort(404, 'Arquivo não encontrado');
+        }
+        // Retorna o arquivo para download
+        return Storage::disk('public')->download($file->path,$file->name);
+    }
+
+    public function paginate($relations = [], $columns = ['*'],$limit = 10)
+    {
+        return $this->filesRepository->paginate($relations , $columns ,$limit);
+    }
+
+    public function get($condition = [],$relations = [],$taskOne)
+    {
+        return $this->filesRepository->get($condition,$relations,$taskOne);
     }
 
     public function update($request,$id):bool|null

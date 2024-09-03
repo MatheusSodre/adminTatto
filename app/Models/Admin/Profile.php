@@ -2,7 +2,8 @@
 
 namespace App\Models\Admin;
 
-use App\Models\Permission\Permission;
+use App\Models\Admin\Permission;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -18,6 +19,10 @@ class Profile extends Model
 
     }
 
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'profile_user', 'profile_id', 'user_id');
+    }
     public function pemissionAvailable($filter)
     {
             $permission = Permission::whereNotIn('permissions.id',function($query){

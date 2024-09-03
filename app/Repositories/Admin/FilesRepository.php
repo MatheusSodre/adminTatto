@@ -2,6 +2,7 @@
 
 namespace App\Repositories\Admin;
 
+use Illuminate\Database\Eloquent\Collection;
 use App\Models\Files\Files;
 use App\Repositories\BaseRepository;
 
@@ -23,4 +24,3 @@ class FilesRepository extends BaseRepository
                         })->paginate();
     }
 }
-?>

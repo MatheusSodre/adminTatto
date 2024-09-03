@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\Admin\Company;
+namespace App\Services\Admin;
 
 
 

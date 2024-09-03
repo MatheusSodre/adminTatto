@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 
 class PermissionProfileController extends Controller
 {
-    protected $permissions, $profile;
+    private $permissionService, $profileServise;
     public function __construct(PermissionService $permissionService,ProfileService $profileService)
     {
         $this->permissionService = $permissionService;
@@ -28,7 +28,6 @@ class PermissionProfileController extends Controller
 
     public function profiles(Request $request,$idPermission)
     {
-
         if (!$permission = $this->permissionService->getById($idPermission)) {
          return redirect()->back();
         }

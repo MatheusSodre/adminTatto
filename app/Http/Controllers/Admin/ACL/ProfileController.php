@@ -21,7 +21,7 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        $profiles = $this->profileService->all();
+        $profiles = $this->profileService->paginate();
         return view("admin.pages.profiles.index", compact('profiles'));
     }
 

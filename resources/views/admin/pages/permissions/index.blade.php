@@ -41,8 +41,8 @@
                                 {{ $permission->name }}
                             </td>
                             <td style="width=10px;">
-                                <a href="{{ route('permissions.edit', $permission->id) }}" class="btn btn-info">Edit</a>
-                                <a href="{{ route('permissions.show', $permission->id) }}" class="btn btn-warning">VER</a>
+                                <a href="{{ route('permissions.edit', $permission->id) }}" class="btn btn-info"><i class="fas fa-pencil-alt" aria-hidden="true"></i></i></a>
+                                <a href="{{ route('permissions.show', $permission->id) }}" class="btn btn-warning"><i class="fa fa-search" ></i></a>
                                 <a href="{{ route('permissions.profile', $permission->id) }}" class="btn btn-warning"><i class="fa fa-users" aria-hidden="true"></i></a>
 {{--                                <a href="{{ route('permissions.plans', permission->id) }}" class="btn btn-info"><i class="fas fa-list-alt"></i></a>--}}
                             </td>

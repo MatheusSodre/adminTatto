@@ -4,17 +4,22 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 
-use App\Company\Scopes\CompanyScope;
+use App\Models\Traits\UserACLTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use App\Company\Traits\CompanyTrait;
+use App\Models\Admin\Company;
+use App\Models\Admin\Profile;
+use App\Models\Files\Files;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class User extends Authenticatable
 {
 
     use CompanyTrait;
+    use UserACLTrait;
     use HasApiTokens, HasFactory, Notifiable;
 
     /**
@@ -57,6 +62,26 @@ class User extends Authenticatable
      */
     public function company(){
         return $this->belongsTo(Company::class);
+    }
+
+    /**
+     * Files.
+     *
+     * @var array<string, string>
+     */
+    public function files()
+    {
+        return $this->hasMany(Files::class);
+    }
+
+    /**
+     * profiles.
+     *
+     * @var array<string, string>
+     */
+    public function profiles()
+    {
+        return $this->belongsToMany(Profile::class, 'profile_user', 'profile_id', 'user_id');
     }
 }
 

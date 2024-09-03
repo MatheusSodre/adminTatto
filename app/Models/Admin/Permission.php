@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Permission;
+namespace App\Models\Admin;
 
 use App\Models\Admin\Profile;
 use Illuminate\Database\Eloquent\Factories\HasFactory;

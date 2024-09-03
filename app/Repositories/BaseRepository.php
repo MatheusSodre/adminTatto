@@ -29,9 +29,9 @@ class BaseRepository implements BaseRepositoryInterface
      * @param  array  $columns
      * @return mixed
      */
-    public function all($relations = [], $columns = ['*'],$limit = 10): mixed
+    public function all(): mixed
     {
-        return $this->model::with($relations)->select($columns)->latest()->paginate($limit);
+        return $this->model::all();
     }
 
     /**
@@ -41,7 +41,7 @@ class BaseRepository implements BaseRepositoryInterface
      * @param  array  $columns
      * @return mixed
      */
-    public function paginate( $limit = 10,$relations = [], $columns = ['*']): mixed
+    public function paginate($relations = [], $columns = ['*'],$limit = 10): mixed
     {
         return $this->model::with($relations)->select($columns)->latest()->paginate($limit);
     }
@@ -76,20 +76,16 @@ class BaseRepository implements BaseRepositoryInterface
      */
     public function find($id)
     {
-        return $this->model::find($id);
+        return $this->model->find($id);
     }
-}
+
     /**
      * Update an entity.
      *
      * @param  Model  $entity
      * @param  array  $data
-     * @return bool
+     *
      */
-    // public function update(Model $entity, array $data): bool
-    // {
-    //     return $entity->update($data);
-    // }
 
     public function update(array $data, $id)
     {
@@ -125,10 +121,9 @@ class BaseRepository implements BaseRepositoryInterface
      * @param  bool  $takeOne
      * @return mixed
      */
-    public function get(array $condition = [], bool $takeOne = true): mixed
+    public function get(array $condition = [],array $relations = [],bool $takeOne = true): mixed
     {
-        $result = $this->model->where($condition);
-
+        $result = $this->model::with($relations)->where($condition);
         if ($takeOne) {
             return $result->first();
         }

@@ -4,7 +4,7 @@ namespace App\Repositories\Admin;
 
 
 use App\Models\Admin\Profile;
-use App\Models\Permission\Permission;
+use App\Models\Admin\Permission;
 use App\Repositories\BaseRepository;
 
 class PermissionRepository extends BaseRepository

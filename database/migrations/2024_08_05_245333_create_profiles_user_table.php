@@ -11,15 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('files', function (Blueprint $table) {
+        Schema::create('profile_user', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users');
-            $table->foreignId('type_id')->constrained('type_files');
-            $table->string('name');
-            $table->string('path');
-            $table->enum("servicos",["S","F","P"]);
-            $table->string('data_arquivo',10);
-            $table->timestamps();
+            $table->foreignId('profile_id')->constrained('profiles');
         });
     }
 
@@ -28,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('files');
+        Schema::dropIfExists('profile_user');
     }
 };

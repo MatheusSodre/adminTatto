@@ -69,5 +69,9 @@ class UserService
     {
         return $this->userRepository->find($id);
     }
+    public function findOrFail($id)
+    {
+        return $this->userRepository->findOrFail($id);
+    }
 
 }

@@ -23,13 +23,18 @@
     @yield('adminlte_css_pre')
 
     {{-- Base Stylesheets --}}
-    @if(!config('adminlte.enabled_laravel_mix'))
+    @if (!config('adminlte.enabled_laravel_mix'))
         <link rel="stylesheet" href="{{ asset('vendor/fontawesome-free/css/all.min.css') }}">
         <link rel="stylesheet" href="{{ asset('vendor/overlayScrollbars/css/OverlayScrollbars.min.css') }}">
         <link rel="stylesheet" href="{{ asset('vendor/adminlte/dist/css/adminlte.min.css') }}">
+        <link rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-fileinput@5.2.3/css/fileinput.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
 
-        @if(config('adminlte.google_fonts.allowed', true))
-            <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+        @if (config('adminlte.google_fonts.allowed', true))
+            <link rel="stylesheet"
+                href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
         @endif
     @else
         <link rel="stylesheet" href="{{ mix(config('adminlte.laravel_mix_css_path', 'css/app.css')) }}">
@@ -39,8 +44,8 @@
     @include('adminlte::plugins', ['type' => 'css'])
 
     {{-- Livewire Styles --}}
-    @if(config('adminlte.livewire'))
-        @if(intval(app()->version()) >= 7)
+    @if (config('adminlte.livewire'))
+        @if (intval(app()->version()) >= 7)
             @livewireStyles
         @else
             <livewire:styles />
@@ -51,7 +56,7 @@
     @yield('adminlte_css')
 
     {{-- Favicon --}}
-    @if(config('adminlte.use_ico_only'))
+    @if (config('adminlte.use_ico_only'))
         <link rel="shortcut icon" href="{{ asset('favicons/favicon.ico') }}" />
     @elseif(config('adminlte.use_full_favicon'))
         <link rel="shortcut icon" href="{{ asset('favicons/favicon.ico') }}" />
@@ -67,7 +72,7 @@
         <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('favicons/favicon-16x16.png') }}">
         <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('favicons/favicon-32x32.png') }}">
         <link rel="icon" type="image/png" sizes="96x96" href="{{ asset('favicons/favicon-96x96.png') }}">
-        <link rel="icon" type="image/png" sizes="192x192"  href="{{ asset('favicons/android-icon-192x192.png') }}">
+        <link rel="icon" type="image/png" sizes="192x192" href="{{ asset('favicons/android-icon-192x192.png') }}">
         <link rel="manifest" crossorigin="use-credentials" href="{{ asset('favicons/manifest.json') }}">
         <meta name="msapplication-TileColor" content="#ffffff">
         <meta name="msapplication-TileImage" content="{{ asset('favicon/ms-icon-144x144.png') }}">
@@ -81,11 +86,54 @@
     @yield('body')
 
     {{-- Base Scripts --}}
-    @if(!config('adminlte.enabled_laravel_mix'))
+    @if (!config('adminlte.enabled_laravel_mix'))
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
         <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
         <script src="{{ asset('vendor/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
         <script src="{{ asset('vendor/adminlte/dist/js/adminlte.min.js') }}"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                $('.datepicker').datepicker({
+                    format: 'mm/yyyy',
+                    autoclose: true,
+                    todayHighlight: true,
+                    language: 'pt-BR',
+                });
+            });
+        </script>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap-fileinput@5.2.3/js/fileinput.min.js"></script>
+
+        <script>
+            $(document).ready(function() {
+                $("#file-upload").fileinput({
+                    theme: 'fas', // Exemplo de tema, você pode escolher o que preferir
+                    showUpload: false, // Exibe o botão de upload
+                    showRemove: true, // Exibe o botão de remover
+                    browseOnZoneClick: true, // Permite que o usuário clique na zona de arrastar e soltar para selecionar arquivos
+                    allowedFileExtensions: ['jpg', 'png', 'pdf'], // Extensões de arquivos permitidas
+                    maxFileSize: 2048, // Tamanho máximo de arquivo em KB
+                    maxFileCount: 5, // Número máximo de arquivos que podem ser selecionados
+                    overwriteInitial: false, // Não sobrescreve a visualização inicial
+                    initialPreviewAsData: true, // Exibe a visualização inicial como dados
+                    showPreview: true, // Exibe a visualização do arquivo
+                    showCaption: true, // Exibe o título do arquivo
+                    browseClass: "btn btn-primary", // Classe para o botão de busca de arquivos
+                    dropZoneEnabled: true, // Habilita a zona de arrastar e soltar
+                    uploadAsync: false, // Define o upload como síncrono, enviando todos os arquivos em uma única requisição
+                    language: 'pt-BR', // Define o idioma
+                    msgPlaceholder: 'Arraste e solte os arquivos aqui... ou clique para selecionar', // Texto de placeholder
+                    fileActionSettings: { // Configurações de ações sobre o arquivo (como remover, visualizar)
+                        showRemove: true,
+                        showUpload: false,
+                        showZoom: true,
+                        showDrag: true // Habilita a opção de arrastar os arquivos dentro do input
+                    },
+                });
+            });
+        </script>
     @else
         <script src="{{ mix(config('adminlte.laravel_mix_js_path', 'js/app.js')) }}"></script>
     @endif
@@ -94,8 +142,8 @@
     @include('adminlte::plugins', ['type' => 'js'])
 
     {{-- Livewire Script --}}
-    @if(config('adminlte.livewire'))
-        @if(intval(app()->version()) >= 7)
+    @if (config('adminlte.livewire'))
+        @if (intval(app()->version()) >= 7)
             @livewireScripts
         @else
             <livewire:scripts />

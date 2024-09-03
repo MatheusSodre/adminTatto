@@ -10,4 +10,10 @@ class TypeFiles extends Model
     use HasFactory;
 
     protected $fillable = ['name','description'];
+
+
+    public function files()
+    {
+        return $this->hasMany(Files::class);
+    }
 }
