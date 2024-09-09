@@ -63,9 +63,9 @@ return [
     |
     */
 
-    'logo' => '<b>Elo</b>',
-    'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
-    'logo_img_class' => 'brand-image img-circle elevation-3',
+    'logo' => '<b>Grupo</b>',
+    'logo_img' => 'img/logo.png',
+    'logo_img_class' => 'brand-image img-circle elevation-4',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
     'logo_img_alt' => 'Elo',
@@ -253,10 +253,11 @@ return [
     */
 
     'use_route_url' => false,
-    'dashboard_url' => 'home',
+    'dashboard_url' => 'admin',
     'logout_url' => 'logout',
     'login_url' => 'login',
-    'register_url' => 'register',
+    // 'register_url' => 'register',
+    'register_url' => false,
     'password_reset_url' => 'password/reset',
     'password_email_url' => 'password/email',
     'profile_url' => false,
@@ -309,25 +310,30 @@ return [
         //     'icon' => 'fas fa-list-alt',
         // ],
         [
-            'text'       => 'Clientes',
-            'url'        => 'admin/users',
+            'text' => 'Usuários',
+            'url'  => 'admin/users',
             'icon' => 'fa fa-users',
+            'can'  => 'users',
         ],
         [
-            'text'       => 'Arquivos',
-            'url'        => 'admin/files',
+            'text' => 'Arquivos',
+            'url'  => 'admin/files',
             'icon' => 'fa fa-file',
+            'can'  => 'arquivos',
         ],
         [
-            'text'       => 'Perfis',
-            'url'        => 'admin/profiles',
+            'text' => 'Perfis',
+            'url'  => 'admin/profiles',
             'icon' => 'fa fa-id-card',
+            'can'  => 'perfis',
         ],
         [
-            'text'       => 'Permissões',
-            'url'        => 'admin/permissions',
+            'text' => 'Permissões',
+            'url'  => 'admin/permissions',
             'icon' => 'fa fa-unlock-alt',
+            'can'  => 'permissões',
         ],
+
     ],
 
     /*

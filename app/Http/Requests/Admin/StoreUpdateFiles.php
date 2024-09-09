@@ -25,7 +25,24 @@ class StoreUpdateFiles extends FormRequest
             'user_id' => "required",
             'data_arquivo' => 'required',
             'type_id' => 'required',
-            'files.*' => 'required|file|mimes:jpg,png,pdf|max:2048',
+            'files.*'  => 'required|file|mimes:jpg,png,pdf|max:2048',
+        ];
+    }
+    public function messages()
+    {
+        return [
+           'min' => 'Campo deve ter no mínimo :min caracteres',
+           'max' => 'Campo deve ter no maximo :max caracteres',
+           'required' => 'O campo :attribute é obrigatório',
+           'numeric' => 'O campo :attribute é numerico'
+        ];
+    }
+
+    public function attributes()
+    {
+        return [
+            'data_arquivo' => 'Data',
+            'files'       => 'Arquivo'
         ];
     }
 }

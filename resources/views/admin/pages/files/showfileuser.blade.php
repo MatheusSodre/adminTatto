@@ -5,7 +5,7 @@
 @section('content_header')
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{{ route('admin.index') }}">Dashboard</a></li>
-        <li class="breadcrumb-item active"><a href="{{ route('files.index') }}" class="active">Clientes</a></li>
+        <li class="breadcrumb-item active"><a href="{{ route('files.index') }}" class="active">Arquivos</a></li>
     </ol>
     <h1>Arquivos <a href="{{ route('attach.files.client', $idUser) }}" class="btn btn-dark">ADD</a></h1>
 @stop
@@ -41,8 +41,9 @@
                                 {{getStatusServicos($file->servicos)}}
                             </td>
                             <td style="width=10px;">
+                                <a href="{{ route('files.download', $file->id) }}" class="btn btn-warning"><i class="fas fa-download"></i></a>
                                 <a href="{{ route('files.show', $file->id) }}" class="btn btn-warning"><i class="fa fa-search" ></i></a>
-                                <a href="{{ route('files.download', $file->id) }}" class="btn btn-success">Download</a>
+
                             </td>
                         </tr>
                     @endforeach

@@ -3,19 +3,21 @@ namespace App\Models\Traits;
 
 trait UserACLTrait
 {
+    private $permissions = null;
+
     public function permissions()
     {
-        $profiles = $this->profiles()->first();
-        $permission = [];
-        foreach ($profiles->permissions as $profile) {
-            array_push($permission,$profile->name);
+        if ($this->permissions === null) {
+            $profiles = $this->profiles()->with('permissions')->first();
+            $this->permissions = $profiles->permissions->pluck('name')->all();
         }
-        return $permission;
+
+        return $this->permissions;
     }
 
     public function hasPermissions(string $permissionName): bool
     {
-        return in_array($permissionName,$this->permissions());
+        return in_array($permissionName, $this->permissions());
     }
 
     public function isAdmin(): bool

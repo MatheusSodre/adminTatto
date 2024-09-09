@@ -17,5 +17,18 @@ enum ServicosStatusEnum: string
         throw new \ValueError("$servicos Não é valido");
 
     }
+
+    public static function tryFromValue(string $args)
+    {
+        $resul = null;
+        foreach (self::cases() as $servicos){
+
+            if(strpos($servicos->value, $args)){
+                $resul = $servicos->name;
+            }
+        }
+        dd($resul);
+        return null;
+    }
 }
 

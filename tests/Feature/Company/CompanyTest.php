@@ -2,8 +2,8 @@
 
 namespace Tests\Feature\Company;
 
-use App\Models\Company\Category;
-use App\Models\Company\Company;
+use App\Models\admin\Company\Category;
+use App\Models\admin\Company\Company;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
@@ -51,15 +51,15 @@ class CompanyTest extends TestCase
      */
     public function test_validations_store_company()
     {
-    
+
         $response = $this->postJson($this->endpoint,[
             'category_id' => '',
-            'name'        => '', 
+            'name'        => '',
             'phone'       => '',
             'whatsapp'    => '',
             'email'       => '',
         ]);
-        // return 422 validação 
+        // return 422 validação
         $response->assertStatus(422);
     }
 
@@ -73,12 +73,12 @@ class CompanyTest extends TestCase
 
         $response = $this->postJson($this->endpoint,[
             'category_id' => $category->id,
-            'name'        => 'Company Teste', 
+            'name'        => 'Company Teste',
             'phone'       => '9999999999',
             'whatsapp'    => '9999999999',
             'email'       => 'company@teste.com',
         ]);
-        // return 201 criar Company 
+        // return 201 criar Company
         $response->assertStatus(201);
     }
 
@@ -90,10 +90,10 @@ class CompanyTest extends TestCase
     {
         $category = Category::factory()->create();
         $company  = Company::factory()->create();
-        
+
         $data =[
             'category_id' => $category->id,
-            'name'        => 'Company Teste', 
+            'name'        => 'Company Teste',
             'phone'       => '9999999999',
             'whatsapp'    => '9999999999',
             'email'       => 'company@teste.com',
@@ -115,7 +115,7 @@ class CompanyTest extends TestCase
     public function test_delete_company()
     {
         $category = Company::factory()->create();
-        
+
         $response = $this->deleteJson("$this->endpoint/999");
         $response->assertStatus(500);
 

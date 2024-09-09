@@ -8,7 +8,7 @@ use App\Models\Files\TypeFiles;
 use App\Services\Admin\FilesService;
 use App\Services\Admin\UserService;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Gate;
 class FilesController extends Controller
 {
     private $filesService, $userService, $typeFiles;
@@ -21,14 +21,21 @@ class FilesController extends Controller
         $this->filesService = $filesService;
         $this->userService = $userService;
         $this->typeFiles = $typeFiles;
+        $this->middleware(['can:arquivos']);
     }
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-
-        $files = $this->filesService->paginate(['user','type']);
+        $userId = auth()->id();
+        if (Gate::allows('ver-todos-arquivos')) {
+            $files = $this->filesService->paginate(['user.profiles','type']);
+        } elseif (Gate::allows('ver-arquivos', $userId)) {
+            $files = $this->filesService->paginate(['user.profiles','type'], ['user_id' => $userId]);
+        } else {
+            abort(403);
+        }
         return view("admin.pages.files.index", compact('files'));
     }
 
@@ -112,5 +119,11 @@ class FilesController extends Controller
         }
         return view('admin.pages.files.showfileuser', compact('files','idUser'));
     }
+    public function search(Request $request)
+    {
 
+        $filters = $request->only("filter");
+        $files = $this->filesService->search($request);
+        return view("admin.pages.files.index", compact('files','filters'));
+    }
 }

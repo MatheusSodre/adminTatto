@@ -7,6 +7,10 @@ if (!function_exists('getStatusServicos')) {
     {
        return ServicosStatusEnum::fromValue($status);
     }
-
 }
-
+if (!function_exists('getServicosName')) {
+function getServicosName(string $status)
+    {
+        return ServicosStatusEnum::tryFromValue($status);
+    }
+}

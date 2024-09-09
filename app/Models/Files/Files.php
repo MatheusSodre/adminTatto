@@ -24,4 +24,9 @@ class Files extends Model
     {
         return $this->belongsTo(TypeFiles::class);
     }
+
+    public function typeFiles()
+    {
+        return $this->belongsTo(TypeFiles::class,'type_id');
+    }
 }

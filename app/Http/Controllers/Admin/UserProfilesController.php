@@ -6,7 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Services\Admin\ProfileService;
 use App\Services\Admin\UserService;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 class UserProfilesController extends Controller
 {
     private $userService, $profileServise;
@@ -38,7 +39,7 @@ class UserProfilesController extends Controller
             return redirect()->back()->with("info", "Precisa escolher uma permissão");
         }
         $user->profiles()->attach($request->profiles);
-
+        Log::channel('mysql')->info('Usuario Adicionado ao Perfil',['user_id' => Auth::id(),'user_name' => Auth::user()->name,'dados'=>[$request->profiles]]);
         return redirect()->route('users.index');
     }
 

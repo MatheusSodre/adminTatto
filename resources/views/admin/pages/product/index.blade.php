@@ -43,7 +43,7 @@
                             <td>{{$produto['medida']['nome']}}</td>
                             <td style="width=10px;">
                                 <a class="btn btn-primary btn-sm" href="#"><i class="fas fa-folder"></i> <i class="fa fa-search" ></i></a>
-                                <a class="btn btn-info btn-sm" href="#"><i class="fas fa-pencil-alt"></i> <i class="fas fa-pencil-alt" aria-hidden="true"></i></i></a>
+                                <a class="btn btn-warning btn-sm" href="#"><i class="fas fa-pencil-alt"></i> <i class="fas fa-pencil-alt" aria-hidden="true"></i></i></a>
                                 <a class="btn btn-warning btn-sm" href="#"><i class="fas fa-address-book"></i></a>
                             </td>
                         </tr>

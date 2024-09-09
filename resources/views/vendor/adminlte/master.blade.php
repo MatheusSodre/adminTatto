@@ -78,6 +78,7 @@
         <meta name="msapplication-TileImage" content="{{ asset('favicon/ms-icon-144x144.png') }}">
     @endif
 
+    <link rel="stylesheet" href="{{ asset('css/app.css')}}">
 </head>
 
 <body class="@yield('classes_body')" @yield('body_data')>
@@ -95,20 +96,45 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
         <script>
             $(document).ready(function() {
-                $('.datepicker').datepicker({
+                $.fn.datepicker.dates['pt-BR'] = {
+                    days: ['Domingo', 'Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado'],
+                    daysShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'],
+                    daysMin: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'],
+                    months: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+                    monthsShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+                    today: 'Hoje',
+                    clear: 'Limpar',
+                    weekStart: 0,
+                };
+
+                // Agora você pode inicializar o datepicker com a configuração de idioma
+                $('#calendario').datepicker({
                     format: 'mm/yyyy',
                     autoclose: true,
                     todayHighlight: true,
                     language: 'pt-BR',
+                    minViewMode: 1, // Exibe apenas o mês e o ano
+                    viewMode: 1,
                 });
+            });
+
+            $(document).ready(function() {
+                $('.cnpj').mask('00.000.000/0000-00');
             });
         </script>
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap-fileinput@5.2.3/js/fileinput.min.js"></script>
-
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
         <script>
             $(document).ready(function() {
                 $("#file-upload").fileinput({
+                    browseClass: "btn btn-primary", // Classe para o botão de busca de arquivos
+                    browseLabel: 'Procurar Arquivos', // Texto do botão de busca de arquivos
+                    browseIcon: '<i class="fas fa-search"></i>', // Ícone do botão de busca de arquivos
+                    removeLabel: 'Remover', // Texto do botão de remover
+                    removeIcon: '<i class="fas fa-trash"></i>', // Ícone do botão de remover
+                    uploadLabel: 'Upload', // Texto do botão de upload
+                    uploadIcon: '<i class="fas fa-upload"></i>', // Ícone do botão de upload
                     theme: 'fas', // Exemplo de tema, você pode escolher o que preferir
                     showUpload: false, // Exibe o botão de upload
                     showRemove: true, // Exibe o botão de remover
@@ -116,14 +142,43 @@
                     allowedFileExtensions: ['jpg', 'png', 'pdf'], // Extensões de arquivos permitidas
                     maxFileSize: 2048, // Tamanho máximo de arquivo em KB
                     maxFileCount: 5, // Número máximo de arquivos que podem ser selecionados
-                    overwriteInitial: false, // Não sobrescreve a visualização inicial
+                    overwriteInitial: true, // Não sobrescreve a visualização inicial
                     initialPreviewAsData: true, // Exibe a visualização inicial como dados
                     showPreview: true, // Exibe a visualização do arquivo
                     showCaption: true, // Exibe o título do arquivo
                     browseClass: "btn btn-primary", // Classe para o botão de busca de arquivos
                     dropZoneEnabled: true, // Habilita a zona de arrastar e soltar
                     uploadAsync: false, // Define o upload como síncrono, enviando todos os arquivos em uma única requisição
-                    language: 'pt-BR', // Define o idioma
+                    language: 'pt_BR', // Define o idioma
+
+                    // Adicione as seguintes linhas para traduzir o FileInput para português
+                    dropZoneTitle: 'Arraste e solte os arquivos aqui... <span class="fileinput-button-text">ou clique para selecionar</span>',
+                    msgFilesTooMany: 'Você selecionou {n} arquivos. Por favor, selecione {m} ou menos.',
+                    msgFilesTooFew: 'Por favor, selecione pelo menos {n} arquivos.',
+                    msgFileNotFound: 'Arquivo não encontrado!',
+                    msgFileSecured: 'O acesso ao arquivo é restrito.',
+                    msgFileNotReadable: 'O arquivo não pode ser lido.',
+                    msgFilePreviewAborted: 'A visualização do arquivo foi abortada.',
+                    msgFilePreviewError: 'Ocorreu um erro ao visualizar o arquivo.',
+                    msgInvalidFileType: 'Tipo de arquivo inválido. Por favor, selecione um arquivo {types}.',
+                    msgInvalidFileExtension: 'Extensão de arquivo inválida. Por favor, selecione um arquivo com extensão {extensions}.',
+                    msgUploadAborted: 'O upload foi abortado.',
+                    msgUploadThreshold: 'Upload em andamento...',
+                    msgUploadBegin: 'Iniciando o upload...',
+                    msgUploadEnd: 'Upload concluído.',
+                    msgUploadEmpty: 'Nenhum arquivo foi selecionado.',
+                    msgUploadError: 'Ocorreu um erro durante o upload.',
+                    msgUploadTimeout: 'O tempo de upload expirou.',
+                    msgUploadTooLarge: 'O arquivo é muito grande. Por favor, selecione um arquivo com tamanho máximo de {sizeLimit}.',
+                    msgSelected: '{n} arquivo(s) selecionado(s).',
+                    msgFoldersNotAllowed: 'Não é permitido selecionar pastas!',
+                    msgImageWidthSmall: 'A largura da imagem deve ser de pelo menos {size} px.',
+                    msgImageHeightSmall: 'A altura da imagem deve ser de pelo menos {size} px.',
+                    msgImageWidthLarge: 'A largura da imagem deve ser de no máximo {size} px.',
+                    msgImageHeightLarge: 'A altura da imagem deve ser de no máximo {size} px.',
+                    msgImageResize: 'A imagem será redimensionada para {width} x {height} px.',
+                    msgImageResizeConfirmation: 'Você deseja redimensionar a imagem para {width} x {height} px?',
+                    msgSizeTooSmall: 'O arquivo é muito pequeno. Por favor, selecione um arquivo com tamanho mínimo de {sizeLimit}.',
                     msgPlaceholder: 'Arraste e solte os arquivos aqui... ou clique para selecionar', // Texto de placeholder
                     fileActionSettings: { // Configurações de ações sobre o arquivo (como remover, visualizar)
                         showRemove: true,

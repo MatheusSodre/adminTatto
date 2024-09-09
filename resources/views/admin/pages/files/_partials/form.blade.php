@@ -70,7 +70,7 @@
             <div class="col-2">
                 <label for="date">Data:</label>
                 <div class="input-group date">
-                    <input type="text" class="form-control datepicker" id="date" name="data_arquivo"
+                    <input type="text" class="form-control" id="calendario" name="data_arquivo"
                         placeholder="Selecione a data">
                     <div class="input-group-append">
                         <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>

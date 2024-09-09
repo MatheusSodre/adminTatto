@@ -1,11 +1,11 @@
 @extends('adminlte::page')
 
-@section('title', 'Clientes')
+@section('title', 'Usuários')
 
 @section('content_header')
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{{ route('admin.index') }}">Dashboard</a></li>
-        <li class="breadcrumb-item active"><a href="{{ route('users.index') }}" class="active">Clientes</a></li>
+        <li class="breadcrumb-item active"><a href="{{ route('users.index') }}" class="active">Usuários</a></li>
     </ol>
 
 {{--    <div class="ms-2">--}}
@@ -14,7 +14,7 @@
 {{--        </div>--}}
 {{--    </div>--}}
 
-    <h1>Clientes <a href="{{ route('users.create') }}" class="btn btn-dark">ADD</a></h1>
+    <h1>Usuários <a href="{{ route('users.create') }}" class="btn btn-dark">ADD</a></h1>
 @stop
 
 @section('content')
@@ -31,6 +31,7 @@
                 <thead>
                     <tr>
                         <th>Nome</th>
+                        <th>Perfil</th>
                         <th>Cnpj</th>
                         <th>Email</th>
                         <th width="270">Ações</th>
@@ -43,28 +44,34 @@
                                 {{ $user->name }}
                             </td>
                             <td>
+                                @foreach ($user->profiles as $profile )
+                                {{ $profile->name }}
+                                @endforeach
+                            </td>
+                            <td class="cnpj">
                                 {{ $user->cnpj }}
                             </td>
                             <td>
                                 {{ $user->email }}
                             </td>
                             <td style="width=10px;">
-                                <a href="{{ route('users.profiles', $user->id) }}" class="btn btn-info"><i class="fa fa-id-card " aria-hidden="true"></i></a>
-                                <a href="{{ route('users.edit', $user->id) }}" class="btn btn-info"><i class="fas fa-pencil-alt" aria-hidden="true"></i></i></a>
-                                <a href="{{ route('users.show', $user->id) }}" class="btn btn-warning"><i class="fa fa-search" ></i></a>
-                                <a href="{{ route('files.getFileUser', $user->id) }}" class="btn btn-warning"><i class="fa fa-file" aria-hidden="true"></i></a>
+                                <a href="{{ route('users.profiles', $user->id) }}" class="btn btn-warning" title="Add Perfil"><i class="fa fa-id-card " aria-hidden="true"></i></a>
+                                <a href="{{ route('users.edit', $user->id) }}" class="btn btn-warning" title="Editar Usuário"><i class="fas fa-pencil-alt" aria-hidden="true"></i></i></a>
+                                <a href="{{ route('users.show', $user->id) }}" class="btn btn-warning" title="Detalhes Usuário"><i class="fa fa-search" ></i></a>
+                                <a href="{{ route('files.getFileUser', $user->id) }}" class="btn btn-warning" title="Arquivos Usuário"><i class="fa fa-file" aria-hidden="true"></i></a>
                             </td>
                         </tr>
                     @endforeach
                 </tbody>
             </table>
         </div>
-        <div class="card-footer">
-            @if (isset($filters))
-                {!! $users->appends($filters)->links() !!}
+        <div class="card-tools">
+            {{$users->links()}}
+            {{-- @if (isset($filters))
+                {!! $files->appends($filters)->links() !!}
             @else
-                {!! $users->links() !!}
-            @endif
+                {{$files->links()}}
+            @endif --}}
         </div>
     </div>
 @stop

@@ -28,9 +28,9 @@ class PermissionService
         return $this->permissionRepository->all();
     }
 
-    public function paginate()
+    public function paginate(array $relations = [],array $condition = [], array $columns = ['*'], int $limit = 10)
     {
-        return $this->permissionRepository->paginate($relations = [], $columns = ['*']);
+        return $this->permissionRepository->paginate($relations , $condition,  $columns ,  $limit );
     }
 
     public function getById($id)

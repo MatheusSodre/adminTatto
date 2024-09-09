@@ -20,15 +20,12 @@
                     <strong>Cnpj: </strong> {{ $user->cnpj }}
                 </li>
             </ul>
-
             @include('admin.includes.alerts')
-
             <form action="{{ route('users.destroy', $user->id) }}" method="POST">
                 @csrf
                 @method('DELETE')
-                <button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i> DELETAR O CLIENTE: {{ $user->name }}</button>
+                <button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i> DELETAR O USUÁRIO: {{ $user->name }}</button>
             </form>
-
         </div>
     </div>
 @endsection

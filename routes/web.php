@@ -4,15 +4,15 @@ use App\Http\Controllers\Admin\ACL\{PermissionController, PermissionProfileContr
 use App\Http\Controllers\Admin\{PlanController, CompanyController, FilesController, UserProfilesController};
 use App\Http\Controllers\Admin\Product\ProductController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Auth\LoginController;
 use Illuminate\Support\Facades\Route;
-
 
 Route::prefix('admin')
     ->middleware('auth')
     ->group(callback: function () {
 
-        Route::get('test-profil', function (){
-            dd(auth()->user()->isAdmin());
+        Route::get('test', function (){
+            dd(auth()->user()->hasPermissions('files'));
         });
 
         Route::get('plans/{uuid}', [PlanController::class, 'index'])->name('plans.index');
@@ -69,12 +69,18 @@ Route::prefix('admin')
         Route::get('company', [CompanyController::class, 'index'])->name('company.index');
 
         /**
+         * logs
+         */
+        Route::get('logs', [CompanyController::class, 'index'])->name('logs.index');
+        /**
          * Home Dashboard
          */
         // Route::get('/', 'DashboardController@home')->name('admin.index');
-        Route::get('/', [UserController::class, 'index'])->name('admin.index');
+        Route::get('/', [FilesController::class, 'index'])->name('admin.index');
+        Route::get('/logout', [LoginController::class,'showLoginForm']);
+
     });
-
-
-
+    Route::middleware(['auth', 'auth.session'])->group(function () {
+            Route::get('/', [FilesController::class, 'index'])->name('admin.index');
+    });
 Auth::routes();

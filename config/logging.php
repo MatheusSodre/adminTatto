@@ -70,6 +70,13 @@ return [
             'context_prefix' => null,
             'extra_prefix' => null,
         ],
+
+        'mysql' => [
+            'driver' => 'custom',
+            'via' => App\Logging\CreateCustomMySQLLogger::class,
+            'level' => 'debug',
+        ],
+
         'single' => [
             'driver' => 'single',
             'path' => storage_path('logs/laravel.log'),

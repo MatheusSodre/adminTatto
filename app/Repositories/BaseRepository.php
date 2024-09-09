@@ -41,9 +41,9 @@ class BaseRepository implements BaseRepositoryInterface
      * @param  array  $columns
      * @return mixed
      */
-    public function paginate($relations = [], $columns = ['*'],$limit = 10): mixed
+    public function paginate(array $relations = [], array $condition = [], array $columns = ['*'], int $limit = 10): mixed
     {
-        return $this->model::with($relations)->select($columns)->latest()->paginate($limit);
+        return $this->model::with($relations)->where($condition)->select($columns)->latest()->paginate($limit);
     }
 
     /**

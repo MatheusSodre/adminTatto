@@ -15,6 +15,7 @@ class UserController extends Controller
     public function __construct(private UserService $userService)
     {
         $this->userService = $userService;
+        $this->middleware(['can:users']);
     }
 
     /**
@@ -23,7 +24,7 @@ class UserController extends Controller
     public function index()
     {
 
-        $users = $this->userService->paginate();
+        $users = $this->userService->paginate(['profiles']);
         return view("admin.pages.users.index", compact('users'));
     }
 

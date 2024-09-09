@@ -22,14 +22,14 @@ class ProfileService
         return $this->profileRepository->create($data);
     }
 
-    public function all($relations = [], $columns = ['*'],$limit = 10)
+    public function all()
     {
-        return $this->profileRepository->all($relations , $columns ,$limit );
+        return $this->profileRepository->all();
     }
 
-    public function paginate()
+    public function paginate(array $relations = [],array $condition = [], array $columns = ['*'], int $limit = 10)
     {
-        return $this->profileRepository->paginate($relations = [], $columns = ['*']);
+        return $this->profileRepository->paginate($relations , $condition,  $columns ,  $limit);
     }
 
     public function getById($id)

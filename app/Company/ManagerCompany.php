@@ -2,7 +2,7 @@
 
 namespace App\Company;
 
-use App\Models\Company;
+use App\Models\admin\Company;
 
 class ManagerCompany
 {

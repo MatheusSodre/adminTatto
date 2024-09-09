@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Repositories\Admin;
-use App\Models\Company;
+use App\Models\admin\Company;
 use App\Repositories\BaseRepository;
 
 class CompanyRepository  extends BaseRepository

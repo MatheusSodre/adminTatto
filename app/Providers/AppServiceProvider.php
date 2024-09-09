@@ -15,6 +15,7 @@ use App\Observers\Company\{
 
 
 use App\Observers\Plans\PlanObserve;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -32,6 +33,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+         Paginator::useBootstrapFive();
          Company::observe(CompanyObserve::class);
          Plan::observe(PlanObserve::class);
     }

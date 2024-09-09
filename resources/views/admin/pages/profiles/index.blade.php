@@ -41,22 +41,22 @@
                                 {{ $profile->name }}
                             </td>
                             <td style="width=10px;">
-                                <a href="{{ route('profiles.edit', $profile->id) }}" class="btn btn-info"><i class="fas fa-pencil-alt" aria-hidden="true"></i></i></a>
-                                <a href="{{ route('profiles.show', $profile->id) }}" class="btn btn-warning"><i class="fa fa-search" ></i></a>
-                                <a href="{{ route('profiles.permissions', $profile->id) }}" class="btn btn-warning"><i class="fas fa-lock"></i></a>
-{{--                                <a href="{{ route('profiles.plans', $profile->id) }}" class="btn btn-info"><i class="fas fa-list-alt"></i></a>--}}
+                                <a href="{{ route('profiles.edit', $profile->id) }}" class="btn btn-warning" title="Editar Perfil"><i class="fas fa-pencil-alt" aria-hidden="true"></i></i></a>
+                                <a href="{{ route('profiles.show', $profile->id) }}" class="btn btn-warning" title="Ver Perfil"><i class="fa fa-search" ></i></a>
+                                <a href="{{ route('profiles.permissions', $profile->id) }}" class="btn btn-warning" title="Add Permissões"><i class="fas fa-lock"></i></a>
                             </td>
                         </tr>
                     @endforeach
                 </tbody>
             </table>
         </div>
-        <div class="card-footer">
-            @if (isset($filters))
-                {!! $profiles->appends($filters)->links() !!}
+        <div class="card-tools">
+            {{$profiles->links()}}
+            {{-- @if (isset($filters))
+                {!! $files->appends($filters)->links() !!}
             @else
-                {!! $profiles->links() !!}
-            @endif
+                {{$files->links()}}
+            @endif --}}
         </div>
     </div>
     <div class="modal fade" id="modal-xl" style="display: none;" aria-hidden="true">

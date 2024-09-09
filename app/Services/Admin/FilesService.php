@@ -6,6 +6,8 @@ use App\Repositories\Admin\FilesRepository;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class FilesService
 {
@@ -32,6 +34,7 @@ class FilesService
                 $filePath = $file->store('files', 'public'); // Armazena na pasta `storage/app/public/files`
                 $data['path'] = $filePath;
                 $this->filesRepository->create($data);
+                Log::channel('mysql')->info('Arquivo Criado',['user_id' => Auth::id(),'user_name' => Auth::user()->name,'dados'=>$data]);
             }
         }
         return true;
@@ -62,13 +65,14 @@ class FilesService
         if (!Storage::exists($file->path)) {
             abort(404, 'Arquivo não encontrado');
         }
+        Log::channel('mysql')->info('Arquivo Baixado',['user_id' => Auth::id(),'user_name' => Auth::user()->name]);
         // Retorna o arquivo para download
         return Storage::disk('public')->download($file->path,$file->name);
     }
 
-    public function paginate($relations = [], $columns = ['*'],$limit = 10)
+    public function paginate(array $relations = [],array $condition = [], array $columns = ['*'], int $limit = 10)
     {
-        return $this->filesRepository->paginate($relations , $columns ,$limit);
+        return $this->filesRepository->paginate($relations, $condition, $columns ,$limit);
     }
 
     public function get($condition = [],$relations = [],$taskOne)
@@ -78,11 +82,13 @@ class FilesService
 
     public function update($request,$id):bool|null
     {
+        Log::channel('mysql')->info('Arquivo Editado',['user_id' => Auth::id(),'user_name' => Auth::user()->name,'dados'=>$request]);
         return $this->filesRepository->update($request,$id);
     }
 
     public function destroy($id):bool|null
     {
+        Log::channel('mysql')->info('Arquivo Deletado',['user_id' => Auth::id(),'user_name' => Auth::user()->name]);
         return $this->filesRepository->delete($id);
     }
 

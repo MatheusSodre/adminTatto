@@ -2,7 +2,7 @@
 
 namespace Tests\Feature\Company;
 
-use App\Models\Company\Category;
+use App\Models\admin\Company\Category;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
@@ -56,7 +56,7 @@ class CategoryTest extends TestCase
             'title' => '',
             'description'=>''
         ]);
-        // return 422 validação 
+        // return 422 validação
         $response->assertStatus(422);
     }
 
@@ -66,13 +66,13 @@ class CategoryTest extends TestCase
      */
     public function test_store_category()
     {
-        
+
 
         $response = $this->postJson($this->endpoint,[
             'title' => 'Category 01',
             'description'=>'Description of category'
         ]);
-        // return 201 criar category 
+        // return 201 criar category
         $response->assertStatus(201);
     }
 
@@ -83,7 +83,7 @@ class CategoryTest extends TestCase
     public function test_update_category()
     {
         $category = Category::factory()->create();
-        
+
         $data =[
             'title' => 'Title updated',
             'description' => 'Description Category'
@@ -105,7 +105,7 @@ class CategoryTest extends TestCase
     public function test_delete_category()
     {
         $category = Category::factory()->create();
-        
+
         $response = $this->deleteJson("$this->endpoint/999");
         $response->assertStatus(500);
 

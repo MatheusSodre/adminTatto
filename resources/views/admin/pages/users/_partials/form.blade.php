@@ -1,5 +1,6 @@
 @include('admin.includes.alerts')
 
+
 @csrf
 
 <div class="form-group">
@@ -12,7 +13,7 @@
 </div>
 <div class="form-group">
     <label>* Cnpj:</label>
-    <input type="text" name="cnpj" class="form-control" placeholder="33.476.015/0001-80" value="{{ $user->cnpj ?? old('Cnpj') }}">
+    <input type="text" name="cnpj" class="form-control cnpj" placeholder="33.476.015/0001-80" value="{{ $user->cnpj ?? old('Cnpj') }}">
 </div>
 <div class="form-group">
     <label>* Senha:</label>
@@ -21,3 +22,4 @@
 <div class="form-group">
     <button type="submit" class="btn btn-dark">Enviar</button>
 </div>
+

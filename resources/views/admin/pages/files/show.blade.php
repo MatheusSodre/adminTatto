@@ -37,30 +37,4 @@
             </div>
         </div>
     </div>
-    {{-- <div class="card">
-        <div class="card-body">
-            <ul>
-                <li>
-                    <strong>Nome: </strong> {{ $file->name }}
-                </li>
-                <li>
-                    <strong>Email: </strong> {{ $file->email }}
-                </li>
-                <li>
-                    <strong>Cnpj: </strong> {{ $file->cnpj }}
-                </li>
-            </ul>
-            <object data="{{ asset('storage/' . $file->path) }}" type="application/pdf" width="100%" height="800">
-                <p>Seu navegador não suporta a exibição de arquivos PDF.</p>
-            </object>
-            @include('admin.includes.alerts')
-
-            <form action="{{ route('files.destroy', $file->id) }}" method="POST">
-                @csrf
-                @method('DELETE')
-                <button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i> DELETAR O CLIENTE: {{ $file->name }}</button>
-            </form>
-
-        </div>
-    </div> --}}
 @endsection

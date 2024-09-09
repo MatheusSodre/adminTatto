@@ -14,6 +14,7 @@ class ProfileController extends Controller
     public function __construct(private ProfileService $profileService)
     {
         $this->profileService = $profileService;
+        $this->middleware(['can:perfis']);
     }
 
     /**
