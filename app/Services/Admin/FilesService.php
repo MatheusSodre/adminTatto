@@ -26,15 +26,13 @@ class FilesService
     {
         $data = $request->all();
         $data['data_arquivo'] = $this->getDateArquivo($data['data_arquivo']);
-        if ($request->file('files'))
-        {
-            foreach ($request->file('files') as $file)
-            {
+        if ($request->file('files')) {
+            foreach ($request->file('files') as $file) {
                 $data['name'] = !empty($data['name']) ? $this->storeAs($file, 'files', $data['name']) : $file->getClientOriginalName();
                 $filePath = $file->store('files', 'public'); // Armazena na pasta `storage/app/public/files`
                 $data['path'] = $filePath;
                 $this->filesRepository->create($data);
-                Log::channel('mysql')->info('Arquivo Criado',['user_id' => Auth::id(),'user_name' => Auth::user()->name,'dados'=>$data]);
+                Log::channel('mysql')->info('Arquivo Criado',['user_id' => Auth::id(),'user_name' => Auth::user()->name,'destino' => $data['name']]);
             }
         }
         return true;
@@ -52,7 +50,7 @@ class FilesService
 
     public function removeFile($file): bool
     {
-        if(Storage::exists($file->path)){
+        if (Storage::exists($file->path)) {
             $this->destroy($file->id);
             return Storage::delete($file->path);
         }
@@ -65,7 +63,7 @@ class FilesService
         if (!Storage::exists($file->path)) {
             abort(404, 'Arquivo não encontrado');
         }
-        Log::channel('mysql')->info('Arquivo Baixado',['user_id' => Auth::id(),'user_name' => Auth::user()->name]);
+        Log::channel('mysql')->info('Arquivo Baixado',['user_id' => Auth::id(),'user_name' => Auth::user()->name,'destino' => $file->name]);
         // Retorna o arquivo para download
         return Storage::disk('public')->download($file->path,$file->name);
     }
@@ -82,13 +80,16 @@ class FilesService
 
     public function update($request,$id):bool|null
     {
-        Log::channel('mysql')->info('Arquivo Editado',['user_id' => Auth::id(),'user_name' => Auth::user()->name,'dados'=>$request]);
+        Log::channel('mysql')->info('Arquivo Editado',['user_id' => Auth::id(),'user_name' => Auth::user()->name]);
         return $this->filesRepository->update($request,$id);
     }
 
     public function destroy($id):bool|null
     {
-        Log::channel('mysql')->info('Arquivo Deletado',['user_id' => Auth::id(),'user_name' => Auth::user()->name]);
+        if (!$file = $this->filesRepository->find($id)) {
+            return redirect()->back();
+        }
+        Log::channel('mysql')->info('Arquivo Deletado',['user_id' => Auth::id(),'user_name' => Auth::user()->name,'destino' => $file->name]);
         return $this->filesRepository->delete($id);
     }
 

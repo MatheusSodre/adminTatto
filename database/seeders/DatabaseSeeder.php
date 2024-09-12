@@ -3,8 +3,7 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Database\Seeders\Admin\CompanySeeder;
-use Database\Seeders\Admin\TypeFilesSeeder;
+use Database\Seeders\Admin\{CompanySeeder,PermissionsSeeder,TypeFilesSeeder};
 use Database\Seeders\Produto\{SupplierSeeder,CategorieSeeder,MarkSeeder,PlanSeeder,MeasureSeeder,ProductSeeder,PriceSeeder,StockSeeder};
 
 
@@ -22,7 +21,8 @@ class DatabaseSeeder extends Seeder
 
             CompanySeeder::class,
             UserSeeder::class,
-            TypeFilesSeeder::class
+            TypeFilesSeeder::class,
+            PermissionsSeeder::class
             // StatusSeeder::class,
             // MarkSeeder::class,
             // CategorieSeeder::class,

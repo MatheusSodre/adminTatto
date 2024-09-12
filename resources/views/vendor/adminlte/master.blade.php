@@ -96,7 +96,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
         <script>
             $(document).ready(function() {
-                $.fn.datepicker.dates['pt-BR'] = {
+                $.fn.datepicker.dates['pt_BR'] = {
                     days: ['Domingo', 'Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado'],
                     daysShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'],
                     daysMin: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'],
@@ -112,7 +112,7 @@
                     format: 'mm/yyyy',
                     autoclose: true,
                     todayHighlight: true,
-                    language: 'pt-BR',
+                    language: 'pt_BR',
                     minViewMode: 1, // Exibe apenas o mês e o ano
                     viewMode: 1,
                 });

@@ -24,13 +24,11 @@ class UserProfilesController extends Controller
         if (!$profiles || !$user){
             return redirect()->back();
         }
-
         return view('admin.pages.users.profiles.available', compact('profiles','user'));
     }
 
     public function attachUserProfiles(Request $request, $idUser)
     {
-
         if (!$user = $this->userService->find($idUser))
         {
             return redirect()->back();
@@ -39,8 +37,7 @@ class UserProfilesController extends Controller
             return redirect()->back()->with("info", "Precisa escolher uma permissão");
         }
         $user->profiles()->attach($request->profiles);
-        Log::channel('mysql')->info('Usuario Adicionado ao Perfil',['user_id' => Auth::id(),'user_name' => Auth::user()->name,'dados'=>[$request->profiles]]);
+        Log::channel('mysql')->info('Usuario Adicionado ao Perfil',['user_id' => Auth::id(),'user_name' => Auth::user()->name,'destino' => $user->name]);
         return redirect()->route('users.index');
     }
-
 }

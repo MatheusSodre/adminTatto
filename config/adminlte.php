@@ -64,7 +64,7 @@ return [
     */
 
     'logo' => '<b>Grupo</b>',
-    'logo_img' => 'img/logo.png',
+    'logo_img' => 'img/logo-elo.svg',
     'logo_img_class' => 'brand-image img-circle elevation-4',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
@@ -86,7 +86,7 @@ return [
     'auth_logo' => [
         'enabled' => false,
         'img' => [
-            'path' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
+            'path' => 'img/logo-elo.svg',
             'alt' => 'Auth Logo',
             'class' => '',
             'width' => 50,
@@ -109,7 +109,7 @@ return [
     'preloader' => [
         'enabled' => true,
         'img' => [
-            'path' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
+            'path' => 'img/logo-elo.svg',
             'alt' => 'AdminLTE Preloader Image',
             'effect' => 'animation__shake',
             'width' => 60,
@@ -258,8 +258,10 @@ return [
     'login_url' => 'login',
     // 'register_url' => 'register',
     'register_url' => false,
-    'password_reset_url' => 'password/reset',
-    'password_email_url' => 'password/email',
+    // 'password_reset_url' => 'password/reset',
+    // 'password_email_url' => 'password/email',
+    'password_reset_url' => false,
+    'password_email_url' => false,
     'profile_url' => false,
 
     /*
@@ -332,6 +334,12 @@ return [
             'url'  => 'admin/permissions',
             'icon' => 'fa fa-unlock-alt',
             'can'  => 'permissões',
+        ],
+        [
+            'text' => 'Logs',
+            'url'  => 'admin/logs',
+            'icon' => 'fa fa-list',
+            'can'  => 'logs',
         ],
 
     ],

@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\ACL\{PermissionController, PermissionProfileController, ProfileController};
-use App\Http\Controllers\Admin\{PlanController, CompanyController, FilesController, UserProfilesController};
+use App\Http\Controllers\Admin\{PlanController, CompanyController, FilesController, LogsController, UserProfilesController};
 use App\Http\Controllers\Admin\Product\ProductController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\LoginController;
@@ -71,7 +71,8 @@ Route::prefix('admin')
         /**
          * logs
          */
-        Route::get('logs', [CompanyController::class, 'index'])->name('logs.index');
+        Route::get('logs', [LogsController::class, 'index'])->name('logs.index');
+
         /**
          * Home Dashboard
          */

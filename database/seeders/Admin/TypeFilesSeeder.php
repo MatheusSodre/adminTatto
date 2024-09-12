@@ -36,13 +36,13 @@ class TypeFilesSeeder extends Seeder
                         "Holerite",
                         "INSS - Relatório de Compensação",
                         "ISS - Comprovante de Pagamento",
-                        "Outros",
                         "Recibo de Férias",
                         "Relação de Empregados",
                         "Relação de Tomador/Obra - RET",
                         "Relação dos Trabalhadores - SEFIP",
                         "Rubrica",
-                        "Termo de Rescisão"];
+                        "Termo de Rescisão",
+                        "Outros"];
 
         foreach ($typesFiles as  $type) {
             DB::table('type_files')->insert([

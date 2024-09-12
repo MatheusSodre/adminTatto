@@ -2,17 +2,13 @@
 
 namespace App\Services\Admin;
 
-
-
 use App\Jobs\CompanyCreate;
 use App\Jobs\CompanyCreatedEmail;
 use App\Repositories\Admin\CompanyRepository;
 
 
-
 class CompanyService
 {
-
 
     /**
      * Create a new service instance.

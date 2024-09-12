@@ -2,8 +2,6 @@
 
 namespace App\Services\Admin;
 
-
-
 use App\Repositories\Admin\UserRepository;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
@@ -29,7 +27,7 @@ class UserService
     {
         $data['password'] = bcrypt($data['password']);
         $data['cnpj'] = $this->removeMask($data['cnpj']);
-        Log::channel('mysql')->info('Usuário Criado',['user_id' => Auth::id(),'user_name' => Auth::user()->name,'dados'=>$data]);
+        Log::channel('mysql')->info('Usuário Criado',['user_id' => Auth::id(),'user_name' => Auth::user()->name,'destino' => $data['name']]);
         return $this->userRepository->create($data);
     }
 
@@ -50,18 +48,20 @@ class UserService
 
     public function update($request,$id):bool|null
     {
-
         $data = $request->only(['name','email','cnpj']);
-        if(isset($request->password)){
+        if (isset($request->password)){
             $data['password'] = bcrypt($request->password);
         }
-        Log::channel('mysql')->info('Usuário Editado',['user_id' => Auth::id(),'user_name' => Auth::user()->name,'dados'=>$data]);
+        Log::channel('mysql')->info('Usuário Editado',['user_id' => Auth::id(),'user_name' => Auth::user()->name,'destino' => $data['name']]);
         return $this->userRepository->update($data,$id);
     }
 
     public function destroy($id):bool|null
     {
-        Log::channel('mysql')->info('Usuário Deletado',['user_id' => Auth::id(),'user_name' => Auth::user()->name]);
+        if (!$user = $this->userRepository->find($id)) {
+            return redirect()->back();
+        }
+        Log::channel('mysql')->info('Usuário Deletado',['user_id' => Auth::id(),'user_name' => Auth::user()->name,'destino' => $user->name]);
         return $this->userRepository->delete($id);
     }
 
