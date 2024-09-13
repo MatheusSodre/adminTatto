@@ -101,7 +101,7 @@ class FilesController extends Controller
      */
     public function destroy($id)
     {
-        if (!$file = $this->filesService->find($id)){
+        if (!$file = $this->filesService->find($id)) {
             return redirect()->back();
         }
         $this->filesService->removeFile($file);

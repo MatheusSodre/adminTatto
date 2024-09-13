@@ -11,9 +11,9 @@ Route::prefix('admin')
     ->middleware('auth')
     ->group(callback: function () {
 
-        Route::get('test', function (){
-            dd(auth()->user()->hasPermissions('files'));
-        });
+        // Route::get('test', function (){
+        //     dd(auth()->user()->hasPermissions('files'));
+        // });
 
         Route::get('plans/{uuid}', [PlanController::class, 'index'])->name('plans.index');
         Route::get('plans', [PlanController::class, 'index'])->name('plans.index');
@@ -60,6 +60,7 @@ Route::prefix('admin')
          */
         Route::post('users/{user}/profiles/attach', [UserProfilesController::class, 'attachUserProfiles'])->name('users.profiles.attach');
         Route::any('users/{user}/profiles', [UserProfilesController::class, 'userProfiles'])->name('users.profiles');
+        Route::put('users/{user}/status', [UserController::class, 'userStatus'])->name('users.status');
         Route::any('users/search', [UserController::class, 'search'])->name('users.search');
         Route::resource('users', UserController::class);
 

@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('cnpj')->unique();
             $table->string('name');
             $table->string('email')->unique();
-            $table->enum('status', [1,2])->default(1);
+            $table->enum('status', ["1","2"])->default("1");
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();

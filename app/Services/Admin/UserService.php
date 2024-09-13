@@ -48,8 +48,12 @@ class UserService
 
     public function update($request,$id):bool|null
     {
+        if ($request->only(['status'])) {
+            Log::channel('mysql')->info('Usuário Inativado',['user_id' => Auth::id(),'user_name' => Auth::user()->name,'destino' => $request->only(['name'])['name']]);
+            return $this->userRepository->update($request->only(['status']),$id);
+        }
         $data = $request->only(['name','email','cnpj']);
-        if (isset($request->password)){
+        if (isset($request->password)) {
             $data['password'] = bcrypt($request->password);
         }
         Log::channel('mysql')->info('Usuário Editado',['user_id' => Auth::id(),'user_name' => Auth::user()->name,'destino' => $data['name']]);

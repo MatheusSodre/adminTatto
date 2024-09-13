@@ -21,10 +21,12 @@
                 </li>
             </ul>
             @include('admin.includes.alerts')
-            <form action="{{ route('users.destroy', $user->id) }}" method="POST">
+            <form action="{{ route('users.status', $user->id) }}" method="POST">
                 @csrf
-                @method('DELETE')
-                <button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i> DELETAR O USUÁRIO: {{ $user->name }}</button>
+                @method('PUT')
+                <input type="text" name="status" value="2" hidden>
+                <input type="text" name="name" value="{{$user->name}}" hidden>
+                <button type="submit" class="btn btn-danger"><i class="fa fa-user-times"></i> INATIVAR O USUÁRIO: {{ $user->name }}</button>
             </form>
         </div>
     </div>

@@ -24,7 +24,7 @@ class UserController extends Controller
     public function index()
     {
 
-        $users = $this->userService->paginate(['profiles']);
+        $users = $this->userService->paginate(['profiles'],['status' => "1"]);
         return view("admin.pages.users.index", compact('users'));
     }
 
@@ -51,7 +51,7 @@ class UserController extends Controller
      */
     public function show(string $id)
     {
-        if(!$user = $this->userService->getById($id)){
+        if (!$user = $this->userService->getById($id)) {
             return redirect()->back();
         }
         return view('admin.pages.users.show', compact('user'));
@@ -62,7 +62,7 @@ class UserController extends Controller
      */
     public function edit(string $id)
     {
-        if(!$user = $this->userService->getById($id)){
+        if (!$user = $this->userService->getById($id)) {
             return redirect()->back();
         }
          return view('admin.pages.users.edit', compact('user'));
@@ -75,7 +75,7 @@ class UserController extends Controller
      */
     public function update(StoreUpdateUsers $request, string $id)
     {
-        if(!$user = $this->userService->getById($id)){
+        if (!$user = $this->userService->getById($id)) {
             return redirect()->back();
         }
 
@@ -89,7 +89,7 @@ class UserController extends Controller
      */
     public function destroy(string $id)
     {
-        if(!$user = $this->userService->getById($id)){
+        if (!$user = $this->userService->getById($id)) {
             return redirect()->back();
         }
         $this->userService->destroy($id);
@@ -103,5 +103,11 @@ class UserController extends Controller
         $users = $this->userService->search($request);
 
         return view("admin.pages.users.index", compact('users','filters'));
+    }
+
+    public function userStatus(Request $request, $id)
+    {
+        $this->userService->update($request, $id);
+        return redirect()->route('users.index');
     }
 }
