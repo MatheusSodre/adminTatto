@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\ACL\{PermissionController, PermissionProfileController, ProfileController};
-use App\Http\Controllers\Admin\{PlanController, CompanyController, FilesController, LogsController, UserProfilesController};
+use App\Http\Controllers\Admin\{PlanController, CompanyController, FilesController, FinancialController, FinancialExpensesController, LogsController, UserProfilesController};
 use App\Http\Controllers\Admin\Product\ProductController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\LoginController;
@@ -42,6 +42,12 @@ Route::prefix('admin')
         Route::any('files/search', [FilesController::class, 'search'])->name('files.search');
         Route::get('files/{file}/download', [FilesController::class, 'download'])->name('files.download');
         Route::get('files/{user}/user', [FilesController::class, 'getFileUser'])->name('files.getFileUser');
+
+        /**
+         * Financeiro
+         */
+        Route::get('financial', [FinancialController::class, 'index'])->name('financial.index');
+        Route::get('financial/expenses', [FinancialExpensesController::class, 'index'])->name('financial.expenses.index');
 
 
         /**

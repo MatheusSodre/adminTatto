@@ -311,6 +311,7 @@ return [
         //     'url'        => 'admin/plans',
         //     'icon' => 'fas fa-list-alt',
         // ],
+
         [
             'text' => 'Usuários',
             'url'  => 'admin/users',
@@ -318,11 +319,31 @@ return [
             'can'  => 'users',
         ],
         [
-            'text' => 'Arquivos',
-            'url'  => 'admin/files',
-            'icon' => 'fa fa-file',
-            'can'  => 'arquivos',
+            'text' => 'Financeiro',
+            'icon' => 'fa fa-calculator',
+            'submenu' => [
+                [
+                    'text' => 'Lançamentos',
+                    'url' => 'admin/financial',
+                ],
+                [
+                    'text' => 'Despesas',
+                    'url' => 'admin/financial/expenses',
+                ],
+            ],
         ],
+        // [
+        //     'text' => 'Financeiro',
+        //     'url'  => 'admin/financial',
+        //     'icon' => 'fa fa-list',
+        //     // 'can'  => 'logs',
+        // ],
+        // [
+        //     'text' => 'Arquivos',
+        //     'url'  => 'admin/files',
+        //     'icon' => 'fa fa-file',
+        //     'can'  => 'arquivos',
+        // ],
         [
             'text' => 'Perfis',
             'url'  => 'admin/profiles',
@@ -335,6 +356,7 @@ return [
             'icon' => 'fa fa-unlock-alt',
             'can'  => 'permissões',
         ],
+
         [
             'text' => 'Logs',
             'url'  => 'admin/logs',
