@@ -3,7 +3,12 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Database\Seeders\Admin\{CompanySeeder,PermissionsSeeder,TypeFilesSeeder};
+
+use App\Models\Financial\Transaction;
+use Database\Seeders\Admin\{CompanySeeder,PermissionsSeeder,ClientSeeder};
+use Database\Seeders\Financial\CategoriesPaymentSeeder;
+use Database\Seeders\Financial\PaymentMethodSeeder;
+use Database\Seeders\Financial\TransactionSeeder;
 use Database\Seeders\Produto\{SupplierSeeder,CategorieSeeder,MarkSeeder,PlanSeeder,MeasureSeeder,ProductSeeder,PriceSeeder,StockSeeder};
 
 
@@ -21,8 +26,12 @@ class DatabaseSeeder extends Seeder
 
             CompanySeeder::class,
             UserSeeder::class,
-            TypeFilesSeeder::class,
-            PermissionsSeeder::class
+            CategoriesPaymentSeeder::class,
+            ClientSeeder::class,
+            PaymentMethodSeeder::class,
+            // TypeFilesSeeder::class,
+            PermissionsSeeder::class,
+            // TransactionSeeder::class,
             // StatusSeeder::class,
             // MarkSeeder::class,
             // CategorieSeeder::class,
@@ -32,6 +41,8 @@ class DatabaseSeeder extends Seeder
             // PriceSeeder::class,
             // StockSeeder::class
         ]);
+
+        Transaction::factory(count: 60)->create();
 
     }
 }

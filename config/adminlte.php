@@ -318,11 +318,26 @@ return [
             'can'  => 'users',
         ],
         [
-            'text' => 'Arquivos',
-            'url'  => 'admin/files',
-            'icon' => 'fa fa-file',
-            'can'  => 'arquivos',
+            'text' => 'Financeiro',
+            'icon' => 'fa fa-coins',
+            'submenu' => [
+                [
+                    'text' => 'Laçamentos',
+                    'url' => 'admin/financial',
+                ],
+                [
+                    'text' => 'Receita',
+                    'url' => 'admin/financial/transactions',
+                    // 'url' => 'admin/financial/transactions/create/expense',
+                ],
+            ],
         ],
+        // [
+        //     'text' => 'Arquivos',
+        //     'url'  => 'admin/files',
+        //     'icon' => 'fa fa-file',
+        //     'can'  => 'arquivos',
+        // ],
         [
             'text' => 'Perfis',
             'url'  => 'admin/profiles',

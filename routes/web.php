@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\ACL\{PermissionController, PermissionProfileController, ProfileController};
-use App\Http\Controllers\Admin\{PlanController, CompanyController, FilesController, LogsController, UserProfilesController};
+use App\Http\Controllers\Admin\{PlanController, CompanyController, FilesController, FinancialController, LogsController, TransactionController, UserProfilesController};
 use App\Http\Controllers\Admin\Product\ProductController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\LoginController;
@@ -63,6 +63,14 @@ Route::prefix('admin')
         Route::put('users/{user}/status', [UserController::class, 'userStatus'])->name('users.status');
         Route::any('users/search', [UserController::class, 'search'])->name('users.search');
         Route::resource('users', UserController::class);
+
+        /**
+         * Financeiro
+         */
+        Route::get('financial', [FinancialController::class,'index'])->name('financial.index');
+        Route::get('financial/transactions', [TransactionController::class,'index'])->name('financial.transactions.index');
+        Route::get('financial/transactions/create/{type}', [TransactionController::class,'create'])->name('financial.transactions.create');
+        Route::post('financial/transactions/store', [TransactionController::class,'store'])->name('financial.transactions.store');
 
         /**
          * company

@@ -1,7 +1,7 @@
 version: "3.7"
 services:
     # imagem micro 01
-    elo:
+    adminTatto:
         build:
             args:
                 user: admin
@@ -14,26 +14,26 @@ services:
         volumes:
             - ./:/var/www
         networks:
-            - eloservices
+            - inkservices
         links:
-            - db-elo
+            - db-ink
 
     # nginx
     nginx:
         image: nginx:alpine
         restart: unless-stopped
         ports:
-            - 9090:80
+            - 1010:80
             - 443:443
         volumes:
             - ./:/var/www
             - ./docker/nginx/:/etc/nginx/conf.d/
         networks:
-            - eloservices
+            - inkservices
 
     # mysql micro 01
-    db-elo:
-        container_name: db-elo
+    db-ink:
+        container_name: db-ink
         image: mysql:8.0
         restart: unless-stopped
         environment:
@@ -49,7 +49,7 @@ services:
                 --collation-server=utf8mb4_unicode_ci
                 --default-authentication-plugin=mysql_native_password --sql-mode=""
         networks:
-            - eloservices
+            - inkservices
 
     # queue micro 01
     # queue:
@@ -66,14 +66,21 @@ services:
     #     depends_on:
     #         - redis
     #     networks:
-    #         - eloservices
+    #         - inkservices
 
-    # #redis
-    # redis:
-    #     image: redis:latest
+    #redis
+    # cache:
+    #     image: redis:6.2-alpine
+    #     restart: always
+    #     ports:
+    #         - '6379:6379'
+    #     command: redis-server
+    #     # volumes:
+    #     #     - cache:/data
     #     networks:
-    #         - eloservices
+    #         - inkservices
+
 
 networks:
-    eloservices:
+    inkservices:
         driver: bridge

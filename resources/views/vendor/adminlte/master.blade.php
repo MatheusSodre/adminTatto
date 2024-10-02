@@ -89,6 +89,7 @@
     {{-- Base Scripts --}}
     @if (!config('adminlte.enabled_laravel_mix'))
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
         <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
         <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
         <script src="{{ asset('vendor/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
@@ -120,6 +121,8 @@
 
             $(document).ready(function() {
                 $('.cnpj').mask('00.000.000/0000-00');
+                $('#money').mask("#.##0,00", {reverse: true});
+                $('#money_down_payment').mask("#.##0,00", {reverse: true});
             });
         </script>
 
